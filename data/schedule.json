@@ -1,0 +1,71 @@
+{
+	"conference": "PHP Unconference Schedule 2013",
+	"schedule" : {
+		"2013-09-21": [
+			{
+				"time": {
+					"start": "09:30",
+					"end": "10:30"
+				},
+				"talks": [
+					{
+						"speaker": "Orga Team",
+						"topic": "Entrance, registration, warm up",
+						"location": "Main Hall",
+						"description": "blaaaaaahhhh"
+					},
+					{
+						"speaker": "Norman",
+						"topic": "Redis introduction",
+						"location": "Room H1",
+						"description": "awesome"
+					}
+				]
+			},
+			{
+				"time": {
+					"start": "10.30",
+					"end": "12.00"
+				},
+				"talks": [
+					{
+						"speaker": "Orga Team",
+						"topic": "Entrance, registration, warm up",
+						"location": "Main Hall",
+						"description": "blaaaaaahhhh"
+					}
+				]
+			}
+		],
+		"2013-09-22": [
+			{
+				"time": {
+					"start": "09:30",
+					"end": "10:30"
+				},
+				"talks": [
+					{
+						"speaker": "My Team",
+						"topic": "Entrance, registration, warm up",
+						"location": "Main Hall",
+						"description": "meeeehhhhhhhhhhh"
+					}
+				]
+			},
+			{
+				"time": {
+					"start": "10.30",
+					"end": "12.00"
+				},
+				"talks": [
+					{
+						"speaker": "My Team",
+						"topic": "Entrance, registration, warm up",
+						"location": "Main Hall",
+						"description": "meeeehhh"
+					}
+				]
+			}
+		]
+	}
+}

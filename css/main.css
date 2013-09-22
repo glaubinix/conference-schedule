@@ -1,0 +1,44 @@
+h1 {
+	background-color: #000000;
+	color: #ffffff;
+	text-align: center;
+	margin: 0;
+}
+
+#schedule-tabs {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#schedule-tabs > li {
+	text-align: center;
+	display: inline-block;
+}
+
+#schedule-tabs.tabs-2 > li {
+	width: 50%;
+}
+
+#schedule-tabs.tabs-3 > li {
+	width: 33%;
+}
+
+#schedule-tabs.tabs-4 > li {
+	width: 25%;
+}
+
+h2 {
+	margin: 0;
+	background-color: #808080;
+	color: #ffffff;
+}
+
+h3 {
+	margin: 0;
+	color: #ff69b4;
+}
+
+.description {
+	color: #cc0000;
+}
