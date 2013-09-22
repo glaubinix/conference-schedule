@@ -70,7 +70,9 @@ var initSchedule = function(response) {
 
 var selectTab = function (day) {
 	applyForSelector('day-schedule', function(element) { addClass(element, 'hidden') });
+	applyForSelector('schedule-tab', function(element) { removeClass(element, 'active-tab') });
 	removeClass(document.getElementById(day), 'hidden');
+	addClass(document.querySelector('[data-day="' + day + '"]'), 'active-tab');
 };
 
 var applyForSelector = function(class_selector, callback) {
