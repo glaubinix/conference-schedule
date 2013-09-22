@@ -30,9 +30,11 @@ var initSchedule = function(response) {
 			for (var j = 0; j < talk_length; j++) {
 				var talk = slot.talks[j];
 				var talk_id = date + '-' + i + '-' + j;
+				day_string += '<div class="talk">';
 				day_string += '<h3 class="talk-headline" data-talk-id="' + talk_id + '">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
 				day_string += '<div>Location: ' + talk.location + '</div>';
 				day_string += '<div id="' + talk_id + '" class="description">' +talk.description + '</div>';
+				day_string += '</div>';
 			}
 		}
 

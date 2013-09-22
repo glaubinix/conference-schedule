@@ -1,0 +1,38 @@
+h1 {
+	background-color: #99c;
+	color: #ffffff;
+	padding: 5px, 0;
+}
+
+#schedule-tabs > li {
+	text-align: center;
+	display: inline-block;
+	padding: 10px 0px;
+	margin-top: 3px;
+	color: #99c;
+}
+
+h2 {
+	margin: 0;
+	background-color: #808080;
+	color: #ffffff;
+}
+
+h3 {
+	margin: 0;
+	color: #99c;
+}
+
+.description {
+	margin-top: 5px;
+	color: #000000;
+}
+
+#schedule-tabs > li.active-tab {
+	background-color: #99c;
+	color: #ffffff;
+}
+
+div.talk:nth-child(even) {
+	background-color: #ebebf4;
+}

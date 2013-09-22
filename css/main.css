@@ -3,6 +3,7 @@ h1 {
 	color: #ffffff;
 	text-align: center;
 	margin: 0;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 #schedule-tabs {
@@ -32,6 +33,7 @@ h2 {
 	margin: 0;
 	background-color: #808080;
 	color: #ffffff;
+	padding: 3px 10px;
 }
 
 h3 {
@@ -50,4 +52,8 @@ h3 {
 .active-tab {
 	background-color: #000000;
 	color: #ffffff;
+}
+
+div.talk {
+	padding: 3px 10px;
 }
