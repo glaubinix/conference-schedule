@@ -45,7 +45,7 @@ h3 {
 }
 
 .description {
-	color: #cc0000;
+	color: #444444;
 }
 
 .hidden {
@@ -59,4 +59,8 @@ h3 {
 
 div.talk {
 	padding: 3px 10px;
+}
+
+div.talk:nth-child(even) {
+	background-color: #ebebf4;
 }
