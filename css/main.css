@@ -42,3 +42,7 @@ h3 {
 .description {
 	color: #cc0000;
 }
+
+.hidden {
+	display: none;
+}
