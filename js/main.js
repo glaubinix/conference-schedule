@@ -8,18 +8,18 @@ var initSchedule = function(response) {
 	document.getElementById('headline').innerHTML = data.conference;
 
 	var list = "";
-	for (var day in data.schedule) {
-		list += '<li data-day="' + day + '"" class="schedule-tab">' + day + '</li>';
+	for (var date in data.schedule) {
+		list += '<li data-day="' + date + '"" class="schedule-tab">' + date + '</li>';
 	}
 
 	document.getElementById('schedule-tabs').setAttribute('class', 'tabs-' + Object.keys(data.schedule).length);
 	document.getElementById('schedule-tabs').innerHTML = list;
 
 	var schedule_container = "";
-	for (var day in data.schedule) {
-		var day_string = '<div id="' +  day + '" class="day-schedule">';
+	for (date in data.schedule) {
+		var day_string = '<div id="' +  date + '" class="day-schedule">';
 
-		var schedule = data.schedule[day];
+		var schedule = data.schedule[date];
 
 		var schedule_length = schedule.length;
 		for (var i = 0; i < schedule_length; i++) {
@@ -29,7 +29,7 @@ var initSchedule = function(response) {
 			var talk_length = slot.talks.length;
 			for (var j = 0; j < talk_length; j++) {
 				var talk = slot.talks[j];
-				var talk_id = day + '-' + i + '-' + j;
+				var talk_id = date + '-' + i + '-' + j;
 				day_string += '<h3 class="talk-headline" data-talk-id="' + talk_id + '">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
 				day_string += '<div>Location: ' + talk.location + '</div>';
 				day_string += '<div id="' + talk_id + '" class="description">' +talk.description + '</div>';
@@ -43,7 +43,24 @@ var initSchedule = function(response) {
 
 	document.getElementById('schedule').innerHTML = schedule_container;
 
-	selectTab(day);
+	var now = new Date;
+	var month = now.getMonth() + 1;
+	if (month < 10) {
+		month = '0' + month;
+	}
+	var day = now.getDate();
+	if (day < 10) {
+		day = '0' + day;
+	}
+	var today = now.getFullYear() + '-' + month + '-' + now.getDate();
+	if (document.getElementById(today)) {
+		selectTab(today);
+	} else {
+		var first_tab = document.querySelector('.schedule-tab');
+		if (first_tab) {
+			selectTab(first_tab.getAttribute('data-day'));
+		}
+	}
 
 	applyForSelector('description', function(element) {
 		addClass(element, 'hidden')
