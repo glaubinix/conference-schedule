@@ -2,6 +2,7 @@ h1 {
 	background-color: #000000;
 	color: #ffffff;
 	text-align: center;
+	padding: 5px, 0;
 	margin: 0;
 	font-family: Helvetica, Arial, sans-serif;
 }
@@ -15,6 +16,8 @@ h1 {
 #schedule-tabs > li {
 	text-align: center;
 	display: inline-block;
+	padding: 10px 0px;
+	margin-top: 3px;
 }
 
 #schedule-tabs.tabs-2 > li {
