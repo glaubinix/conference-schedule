@@ -6,16 +6,17 @@ To use this app for your own conference you need to change the following points:
 * Create your own favicon and apple-touch-icon
 * Adjust the css to your liking (or simply use a theme)
 * Create a schedule.json with the conference schedule
+* If you add custom css / js file, make sure to add them to the conference.appcache file for offline mode
 
 ### TODO
 * Make example look pretty
 * Add more default themes (js, ...)
 * Load schedule from google spreadsheets or other sources
-* Make the app actually work with local storage
 
 ### Features
 * Load a schedule via json
 * Current date tab will be preselected (if not applicable the first day will be selected)
+* Offline available using local storage and app cache
 
 ### How Can I Contribute?
 Fork and Pull Request, what else?
