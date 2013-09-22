@@ -1,5 +1,5 @@
 {
-	"conference": "PHP Unconference Schedule 2013",
+	"conference": "ACME Conference Schedule 2013",
 	"schedule" : {
 		"2013-09-21": [
 			{
@@ -59,8 +59,8 @@
 				},
 				"talks": [
 					{
-						"speaker": "My Team",
-						"topic": "Entrance, registration, warm up",
+						"speaker": "Stephan",
+						"topic": "How to build awesome stuff",
 						"location": "Main Hall",
 						"description": "meeeehhh"
 					}
