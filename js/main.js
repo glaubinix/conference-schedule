@@ -1,6 +1,13 @@
+if (window.localStorage) {
+	var schedule = localStorage.getItem('schedule');
+	if (schedule) {
+		initSchedule(schedule);
+	}
+}
+
 var request = new XMLHttpRequest();
 request.onreadystatechange = function() {
-	if (request.readyState === 4){
+	if (request.readyState === 4 && request.status === 200) {
 		initSchedule(request.responseText);
 	}
 };
@@ -8,6 +15,10 @@ request.open("GET", 'data/schedule.json', true);
 request.send();
 
 var initSchedule = function(response) {
+	if (window.localStorage) {
+		localStorage.setItem('schedule', response);
+	}
+
 	var data = JSON.parse(response);
 	document.getElementById('headline').innerHTML = data.conference;
 
