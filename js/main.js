@@ -24,7 +24,7 @@ $.getJSON( "data/schedule.json", function( data ) {
 			for (var j = 0; j < talk_length; j++) {
 				var talk = slot.talks[j];
 				var talk_id = day + '-' + i + '-' + j;
-				day_string += '<h3 data-talk-id="' + talk_id + '">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
+				day_string += '<h3 class="talk-headline" data-talk-id="' + talk_id + '">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
 				day_string += '<div>Location: ' + talk.location + '</div>';
 				day_string += '<div id="' + talk_id + '" class="description">' +talk.description + '</div>';
 			}
@@ -39,18 +39,22 @@ $.getJSON( "data/schedule.json", function( data ) {
 
 	selectTab(day);
 
-	applyForSelector('description', function(element) { addClass(element, 'hidden') });
-
-
-	$('.schedule-tab').on('click', function (event) {
-		var selected_day = $(this).data('day');
-		selectTab(selected_day);
+	applyForSelector('description', function(element) {
+		addClass(element, 'hidden')
 	});
 
-	$('h3').on('click', function(event) {
-		applyForSelector('description', function(element) { addClass(element, 'hidden') });
-		var talk_id = $(this).data('talk-id');
-		removeClass(document.getElementById(talk_id), 'hidden');
+	applyForSelector('schedule-tab', function(element) {
+		element.addEventListener('click', function(event) {
+			var day = event.target.getAttribute('data-day');
+			selectTab(day);
+		});
+	});
+
+	applyForSelector('talk-headline', function(element) {
+		element.addEventListener('click', function(event) {
+			var talk_id = event.target.getAttribute('data-talk-id');
+			toggleClass(document.getElementById(talk_id), 'hidden');
+		});
 	});
 });
 
@@ -85,4 +89,13 @@ var removeClass = function(element, css_class) {
 	}
 
 	element.setAttribute('class', current_css_class.join(' '));
+}
+
+var toggleClass = function(element, css_class) {
+	var current_css_class = element.getAttribute('class').split(' ');
+	if (current_css_class.indexOf(css_class) === -1) {
+		addClass(element, css_class);
+	} else {
+		removeClass(element, css_class);
+	}
 }
