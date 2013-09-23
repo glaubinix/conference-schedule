@@ -10,10 +10,11 @@ h1 {
 h2 {
 	background-color: #808080;
 	color: #ffffff;
+	border-bottom-color: #669;
 }
 
 h3 {
-	color: #99c;
+	color: #669;
 }
 
 .description {

@@ -9,8 +9,6 @@ To use this app for your own conference you need to change the following points:
 * If you add custom css / js file, make sure to add them to the conference.appcache file for offline mode
 
 ### TODO
-* Make example look pretty
-* Add more default themes (js, ...)
 * Load schedule from google spreadsheets or other sources
 
 ### Features
