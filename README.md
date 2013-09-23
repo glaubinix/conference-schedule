@@ -10,6 +10,9 @@ To use this app for your own conference you need to change the following points:
 
 ### TODO
 * Load schedule from google spreadsheets or other sources
+* Click behavior to show details
+* Add refresh functionality to refetch data
+* Try to add some sort of marker/reminder
 
 ### Features
 * Load a schedule via json
