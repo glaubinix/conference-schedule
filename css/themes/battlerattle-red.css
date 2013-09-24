@@ -1,32 +1,15 @@
 h1 {
 	background-color: #c00;
-	color: #ffffff;
-}
-
-#schedule-tabs > li {
-	color: #666;
 }
 
 #schedule-tabs > li.active-tab {
 	background-color: #c00;
-	color: #fff;
 }
 
 h2 {
-	background-color: #444;
-	color: #fff;
 	border-bottom: 4px solid #c00;
 }
 
 h3 {
-	color: #444;
-}
-
-div.talk:nth-child(even) {
-	background-color: #eee;
-}
-
-.description {
-	margin-top: 5px;
 	color: #444;
 }

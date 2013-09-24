@@ -1,6 +1,5 @@
 h1 {
 	background-color: #99c;
-	color: #ffffff;
 }
 
 #schedule-tabs > li {
@@ -9,7 +8,6 @@ h1 {
 
 h2 {
 	background-color: #808080;
-	color: #ffffff;
 	border-bottom-color: #669;
 }
 
@@ -17,13 +15,7 @@ h3 {
 	color: #669;
 }
 
-.description {
-	margin-top: 5px;
-	color: #000000;
-}
-
 #schedule-tabs > li.active-tab {
 	background-color: #99c;
-	color: #ffffff;
 }
 

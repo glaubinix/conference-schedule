@@ -17,6 +17,12 @@ h1 {
 	display: inline-block;
 	padding: 10px 0;
 	margin-top: 3px;
+	color: #666;
+}
+
+#schedule-tabs > li.active-tab {
+	background-color: #ff69b4;
+	color: #fff;
 }
 
 #schedule-tabs.tabs-2 > li {
@@ -45,16 +51,12 @@ h3 {
 }
 
 .description {
-	color: #444444;
+	color: #444;
+	margin-top: 5px;
 }
 
 .hidden {
 	display: none;
-}
-
-.active-tab {
-	background-color: #ff69b4;
-	color: #ffffff;
 }
 
 div.talk {
@@ -62,5 +64,5 @@ div.talk {
 }
 
 div.talk:nth-child(even) {
-	background-color: #ebebf4;
+	background-color: #eee;
 }
