@@ -9,6 +9,7 @@
 
 		var day;
 		var day_identifier;
+		var slot;
 		for (var i in data) {
 			var row_data = data[i];
 
@@ -17,13 +18,51 @@
 					schedule.schedule[day_identifier] = day;
 				}
 
-				day_identifier = row_data[0];
+				day_identifier = row_data[0].replace(/([\r\n])/, "").replace(/(\s)/, "");
+				console.log(day_identifier)
 				day = [];
 			}
 
+			// maybe we have a new time slot
+			if (/[0-9]+.[0-9]+/.test(row_data[0])) {
+				slot = {
+					time: {
+						start: row_data[0],
+						end: row_data[0]
+					},
+					talks: []
+				};
+
+				if (row_data[5] == '') {
+					slot.talks.push({
+						speaker: 'all',
+						topic:  row_data[4]
+					});
+				} else {
+					slot.talks.push({
+						speaker: row_data[4],
+						topic:  row_data[5]
+					});
+				}
+
+				// There are two talks
+				if (row_data[0] === row_data[7] && row_data[7] !== '') {
+					slot.talks.push({
+						speaker: row_data[11],
+						topic:  row_data[12]
+					});
+				}
+			}
+
+			if (typeof slot != 'undefined') {
+				day.push(slot);
+			}
+
+			slot = undefined;
+
 		}
 
-		console.log(schedule)
+		initSchedule(JSON.stringify(schedule));
 	});
 
 	var initSchedule = function(response) {
