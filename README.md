@@ -8,12 +8,6 @@ To use this app for your own conference you need to change the following points:
 * Create a schedule.json with the conference schedule
 * If you add custom css / js file, make sure to add them to the conference.appcache file for offline mode
 
-### TODO
-* Load schedule from google spreadsheets or other sources
-* Click behavior to show details
-* Add refresh functionality to refetch data
-* Try to add some sort of marker/reminder
-
 ### Features
 * Load a schedule via json
 * Current date tab will be preselected (if not applicable the first day will be selected)
