@@ -1,6 +1,31 @@
 (function() {
 	"use strict";
 
+	var loader = new SpreadsheetLoader();
+	loader.load('0AoIOxKkr6fGqdGtHdWJqZFBJUnF1bEt3RVBsQUxINVE', function(data) {
+		var schedule = {};
+		schedule.conference = 'jsconf.eu';
+		schedule.schedule = {};
+
+		var day;
+		var day_identifier;
+		for (var i in data) {
+			var row_data = data[i];
+
+			if (row_data[0].indexOf('Day') !== -1) {
+				if (typeof day !== 'undefined') {
+					schedule.schedule[day_identifier] = day;
+				}
+
+				day_identifier = row_data[0];
+				day = [];
+			}
+
+		}
+
+		console.log(schedule)
+	});
+
 	var initSchedule = function(response) {
 		if (window.localStorage) {
 			localStorage.setItem('schedule', response);
