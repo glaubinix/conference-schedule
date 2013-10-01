@@ -10,6 +10,12 @@
 		var day;
 		var day_identifier;
 		var slot;
+
+		var locations = [
+			data[0][3],
+			data[0][10]
+		];
+
 		for (var i in data) {
 			var row_data = data[i];
 
@@ -43,20 +49,23 @@
 				if (row_data[5] == '') {
 					slot.talks.push({
 						speaker: 'all',
-						topic:  row_data[4]
+						topic:  row_data[4],
+						location: locations[0]
 					});
 				} else {
 					slot.talks.push({
 						speaker: row_data[4],
-						topic:  row_data[5]
+						topic:  row_data[5],
+						location: locations[0]
 					});
 				}
 
 				// There are two talks
-				if (row_data[0] === row_data[7] && row_data[7] !== '') {
+				if (row_data[0] === row_data[7] && row_data[7] !== '' && row_data[12] !== '') {
 					slot.talks.push({
 						speaker: row_data[11],
-						topic:  row_data[12]
+						topic:  row_data[12],
+						location: locations[1]
 					});
 				}
 			}
