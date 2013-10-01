@@ -153,13 +153,15 @@
 		}
 	}
 
-	var request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
-		if (request.readyState === 4 && request.status === 200) {
-			initSchedule(request.responseText);
-		}
-	};
-	request.open("GET", 'data/schedule.json', true);
-	request.send();
+	var loader = new JsonScheduleLoader('schedule.json');
+	loader.load(initSchedule);
+
+	/*var parser = new JsconfLikeSpreadsheetParser();
+	var loader = new SpreadsheetScheduleLoader('0AoIOxKkr6fGqdGtHdWJqZFBJUnF1bEt3RVBsQUxINVE');
+	loader.load(function(result1) {
+		parser.convertCsvToJson(result1, function(result) {
+			parser.buildSchedule(result, initSchedule);
+		});
+	});*/
 
 })();
