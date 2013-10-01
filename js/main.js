@@ -1,86 +1,6 @@
 (function() {
 	"use strict";
 
-	var loader = new SpreadsheetLoader();
-	loader.load('0AoIOxKkr6fGqdGtHdWJqZFBJUnF1bEt3RVBsQUxINVE', function(data) {
-		var schedule = {};
-		schedule.conference = 'jsconf.eu';
-		schedule.schedule = {};
-
-		var day;
-		var day_identifier;
-		var slot;
-
-		var locations = [
-			data[0][3],
-			data[0][10]
-		];
-
-		for (var i in data) {
-			var row_data = data[i];
-
-			if (row_data[0].indexOf('Day') !== -1) {
-				if (typeof day !== 'undefined') {
-					schedule.schedule[day_identifier] = day;
-				}
-
-				day_identifier = row_data[0].replace(/([\r\n])/, "").replace(/(\s)/, "");
-				day = [];
-			}
-
-			// maybe we have a new time slot
-			var matches = row_data[0].match(/([0-9]+).([0-9]+)/);
-			if (null != matches) {
-				if (isNaN(row_data[1]) || row_data[1].length == 0) {
-					var end_string = 'Open End';
-				} else {
-					var end = matches[1] * 60 + parseInt(matches[2]) + parseInt(row_data[1]);
-					var end_string = Math.floor(end / 60).toString() + ':' + ((end % 60).toString() == 0 ? '00' : (end % 60).toString());
-				}
-
-				slot = {
-					time: {
-						start: matches[1] + ':' + matches[2],
-						end: end_string
-					},
-					talks: []
-				};
-
-				if (row_data[5] == '') {
-					slot.talks.push({
-						speaker: 'all',
-						topic:  row_data[4],
-						location: locations[0]
-					});
-				} else {
-					slot.talks.push({
-						speaker: row_data[4],
-						topic:  row_data[5],
-						location: locations[0]
-					});
-				}
-
-				// There are two talks
-				if (row_data[0] === row_data[7] && row_data[7] !== '' && row_data[12] !== '') {
-					slot.talks.push({
-						speaker: row_data[11],
-						topic:  row_data[12],
-						location: locations[1]
-					});
-				}
-			}
-
-			if (typeof slot != 'undefined') {
-				day.push(slot);
-			}
-
-			slot = undefined;
-
-		}
-
-		initSchedule(JSON.stringify(schedule));
-	});
-
 	var initSchedule = function(response) {
 		if (window.localStorage) {
 			localStorage.setItem('schedule', response);
@@ -216,13 +136,15 @@
 		}
 	}
 
-	var request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
-		if (request.readyState === 4 && request.status === 200) {
-			initSchedule(request.responseText);
-		}
-	};
-	request.open("GET", 'data/schedule.json', true);
-	request.send();
+	var loader = new JsonScheduleLoader('schedule.json');
+	loader.load(initSchedule);
+
+	/*var parser = new JsconfLikeSpreadsheetParser();
+	var loader = new SpreadsheetScheduleLoader('0AoIOxKkr6fGqdGtHdWJqZFBJUnF1bEt3RVBsQUxINVE');
+	loader.load(function(result1) {
+		parser.convertCsvToJson(result1, function(result) {
+			parser.buildSchedule(result, initSchedule);
+		});
+	});*/
 
 })();
