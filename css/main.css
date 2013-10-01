@@ -9,14 +9,13 @@ h1 {
 #schedule-tabs {
 	list-style: none;
 	margin: 0;
-	padding: 0;
+	padding: 3px 0 0;
 }
 
 #schedule-tabs > li {
 	text-align: center;
 	display: inline-block;
 	padding: 10px 0;
-	margin-top: 3px;
 	color: #666;
 }
 
@@ -41,6 +40,7 @@ h1 {
 	background-color: #444;
 	width: 10%;
 	overflow: hidden;
+	height: 20px;
 }
 
 .refresh-tab .refresh-icon {
