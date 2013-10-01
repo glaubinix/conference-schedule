@@ -33,8 +33,8 @@
 				for (var j = 0; j < talk_length; j++) {
 					var talk = slot.talks[j];
 					var talk_id = date + '-' + i + '-' + j;
-					day_string += '<div class="talk">';
-					day_string += '<h3 class="talk-headline" data-talk-id="' + talk_id + '">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
+					day_string += '<div class="talk" data-talk-id="' + talk_id + '">';
+					day_string += '<h3 class="talk-headline">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
 					day_string += '<div>Location: ' + talk.location + '</div>';
 					day_string += '<div id="' + talk_id + '" class="description">' +talk.description + '</div>';
 					day_string += '</div>';
@@ -68,7 +68,7 @@
 		}
 
 		applyForSelector('description', function(element) {
-			addClass(element, 'hidden')
+			addClass(element, 'hidden');
 		});
 
 		applyForSelector('schedule-tab', function(element) {
@@ -78,9 +78,9 @@
 			});
 		});
 
-		applyForSelector('talk-headline', function(element) {
-			element.addEventListener('click', function(event) {
-				var talk_id = event.target.getAttribute('data-talk-id');
+		applyForSelector('talk', function(element) {
+			element.addEventListener('click', function() {
+				var talk_id = element.getAttribute('data-talk-id');
 				toggleClass(document.getElementById(talk_id), 'hidden');
 			});
 		});
