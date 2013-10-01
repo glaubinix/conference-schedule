@@ -14,6 +14,7 @@
 		for (var date in data.schedule) {
 			list += '<li data-day="' + date + '"" class="schedule-tab">' + date + '</li>';
 		}
+		list += '<li class="refresh-tab"><span class="refresh-icon"></span></li>';
 
 		document.getElementById('schedule-tabs').setAttribute('class', 'tabs-' + Object.keys(data.schedule).length);
 		document.getElementById('schedule-tabs').innerHTML = list;
@@ -75,6 +76,22 @@
 			element.addEventListener('click', function(event) {
 				var day = event.target.getAttribute('data-day');
 				selectTab(day);
+			});
+		});
+
+		applyForSelector('refresh-tab', function(element) {
+			element.addEventListener('click', function(event) {
+				addClass(element, 'refreshing');
+
+				// I know, this is really dirty, but we need to refactor it anyway :)
+				var request = new XMLHttpRequest();
+				request.onreadystatechange = function() {
+					if (request.readyState === 4 && request.status === 200) {
+						initSchedule(request.responseText);
+					}
+				};
+				request.open("GET", 'data/schedule.json', true);
+				request.send();
 			});
 		});
 

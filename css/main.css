@@ -26,15 +26,41 @@ h1 {
 }
 
 #schedule-tabs.tabs-2 > li {
-	width: 50%;
+	width: 45%;
 }
 
 #schedule-tabs.tabs-3 > li {
-	width: 33%;
+	width: 30%;
 }
 
 #schedule-tabs.tabs-4 > li {
-	width: 25%;
+	width: 22.5%;
+}
+
+#schedule-tabs li.refresh-tab {
+	background-color: #444;
+	width: 10%;
+	overflow: hidden;
+}
+
+.refresh-tab .refresh-icon {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: transparent url(/images/refresh-white.png) center center no-repeat;
+}
+
+#schedule-tabs li.refresh-tab.refreshing .refresh-icon {
+	-webkit-animation: rotate 1s linear 0s infinite normal;
+}
+
+@-webkit-keyframes rotate {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
 }
 
 h2 {
