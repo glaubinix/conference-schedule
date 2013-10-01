@@ -96,7 +96,6 @@ var SpreadsheetLoader = function() {
 			}
 
 			// Return the parsed data.
-		console.log(arrData)
 			callback( arrData );
 	}
 };

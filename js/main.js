@@ -19,7 +19,6 @@
 				}
 
 				day_identifier = row_data[0].replace(/([\r\n])/, "").replace(/(\s)/, "");
-				console.log(day_identifier)
 				day = [];
 			}
 
@@ -31,7 +30,6 @@
 				} else {
 					var end = matches[1] * 60 + parseInt(matches[2]) + parseInt(row_data[1]);
 					var end_string = Math.floor(end / 60).toString() + ':' + ((end % 60).toString() == 0 ? '00' : (end % 60).toString());
-					console.log(matches[1] * 60, matches[1] * 60 + matches[2], row_data[1])
 				}
 
 				slot = {
