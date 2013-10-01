@@ -24,11 +24,20 @@
 			}
 
 			// maybe we have a new time slot
-			if (/[0-9]+.[0-9]+/.test(row_data[0])) {
+			var matches = row_data[0].match(/([0-9]+).([0-9]+)/);
+			if (null != matches) {
+				if (isNaN(row_data[1]) || row_data[1].length == 0) {
+					var end_string = 'Open End';
+				} else {
+					var end = matches[1] * 60 + parseInt(matches[2]) + parseInt(row_data[1]);
+					var end_string = Math.floor(end / 60).toString() + ':' + ((end % 60).toString() == 0 ? '00' : (end % 60).toString());
+					console.log(matches[1] * 60, matches[1] * 60 + matches[2], row_data[1])
+				}
+
 				slot = {
 					time: {
-						start: row_data[0],
-						end: row_data[0]
+						start: matches[1] + ':' + matches[2],
+						end: end_string
 					},
 					talks: []
 				};
