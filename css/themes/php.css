@@ -19,3 +19,10 @@ h3 {
 	background-color: #99c;
 }
 
+.talk.starred h3::before {
+    background-color: #99c;
+}
+
+.talk.starred .star-button {
+    background-color: #99c;
+}
