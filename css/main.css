@@ -85,10 +85,20 @@ h3 {
 	display: none;
 }
 
-div.talk {
+.talk {
 	padding: 3px 10px;
 }
 
-div.talk:nth-child(even) {
+.talk:nth-child(even) {
 	background-color: #eee;
+}
+
+.talk.starred h3::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #ff69b4 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><path fill='white' d='M10.000 14.000L15.290 17.281L13.804 11.236L18.560 7.219L12.351 6.764L10.000 1.000L7.649 6.764L1.440 7.219L6.196 11.236L4.710 17.281L10.000 14.000'/></svg>") center center no-repeat;
+    border-radius: 10px;
+    margin: 0 5px -3px 0;
 }
