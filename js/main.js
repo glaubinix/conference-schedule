@@ -1,8 +1,13 @@
 (function() {
 	"use strict";
 
-	var initSchedule = function(response) {
+	var initSchedule = function(response, loaded_from_storage) {
 		if (window.localStorage) {
+			// it makes absolutely no sense to rebuild the page if nothing changed
+			if (!loaded_from_storage && response == localStorage.getItem('schedule')) {
+				return;
+			}
+
 			localStorage.setItem('schedule', response);
 		}
 
@@ -154,7 +159,7 @@
 	if (window.localStorage) {
 		var schedule = localStorage.getItem('schedule');
 		if (schedule) {
-			initSchedule(schedule);
+			initSchedule(schedule, true);
 		}
 	}
 
