@@ -102,3 +102,16 @@ h3 {
     border-radius: 10px;
     margin: 0 5px -3px 0;
 }
+
+.talk .star-button {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 1px 5px;
+    color: #fff;
+    background-color: #444;
+    font-weight: bold;
+}
+
+.talk.starred .star-button {
+    background-color: #ff69b4;
+}

@@ -37,7 +37,7 @@
 					day_string += '<div class="talk" data-talk-id="' + talk_id + '">';
 					day_string += '<h3 class="talk-headline">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
 					day_string += '<div>Location: ' + talk.location + '</div>';
-					day_string += '<div id="' + talk_id + '" class="description">' +talk.description + '</div>';
+					day_string += '<div id="' + talk_id + '" class="description">' +talk.description + '<div><span class="star-button"></span></div></div>';
 					day_string += '</div>';
 				}
 			}
@@ -101,6 +101,18 @@
 				toggleClass(document.getElementById(talk_id), 'hidden');
 			});
 		});
+
+        applyForSelector('star-button', function(element) {
+            var talk_element = element.parentNode.parentNode.parentNode;
+
+            element.innerText = (hasClass(talk_element, 'starred') ? 'unstar' : 'star');
+
+            element.addEventListener('click', function(event) {
+                event.stopPropagation();
+                toggleClass(talk_element, 'starred');
+                element.innerText = (hasClass(talk_element, 'starred') ? 'unstar' : 'star');
+            });
+        });
 	};
 
 	var selectTab = function (day) {
@@ -118,13 +130,14 @@
 		}
 	};
 
-	var addClass = function(element, css_class) {
-		var current_css_class = element.getAttribute('class').split(' ');
-		if (current_css_class.indexOf(css_class) === -1) {
-			current_css_class.push(css_class);
-		}
+    var hasClass = function(element, css_class) {
+        return (element.getAttribute('class').split(' ').indexOf(css_class) != -1);
+    };
 
-		element.setAttribute('class', current_css_class.join(' '));
+	var addClass = function(element, css_class) {
+        if (!hasClass(element, css_class)) {
+            element.setAttribute('class', element.getAttribute('class') + ' ' + css_class);
+        }
 	};
 
 	var removeClass = function(element, css_class) {
@@ -138,12 +151,11 @@
 	};
 
 	var toggleClass = function(element, css_class) {
-		var current_css_class = element.getAttribute('class').split(' ');
-		if (current_css_class.indexOf(css_class) === -1) {
-			addClass(element, css_class);
-		} else {
-			removeClass(element, css_class);
-		}
+        if (hasClass(element, css_class)) {
+            removeClass(element, css_class);
+        } else {
+            addClass(element, css_class);
+        }
 	};
 
 	if (window.localStorage) {
