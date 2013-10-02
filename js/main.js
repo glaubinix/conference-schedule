@@ -34,6 +34,11 @@
 				for (var j = 0; j < talk_length; j++) {
 					var talk = slot.talks[j];
 					var talk_id = date + '-' + i + '-' + j;
+
+					if (!talk.description) {
+						talk.description = 'No description available.';
+					}
+
 					day_string += '<div class="talk" data-talk-id="' + talk_id + '">';
 					day_string += '<h3 class="talk-headline">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
 					day_string += '<div>Location: ' + talk.location + '</div>';
