@@ -1,8 +1,13 @@
 (function() {
 	"use strict";
 
-	var initSchedule = function(response) {
+	var initSchedule = function(response, loaded_from_storage) {
 		if (window.localStorage) {
+			// it makes absolutely no sense to rebuild the page if nothing changed
+			if (!loaded_from_storage && response == localStorage.getItem('schedule')) {
+				return;
+			}
+
 			localStorage.setItem('schedule', response);
 		}
 
@@ -34,6 +39,11 @@
 				for (var j = 0; j < talk_length; j++) {
 					var talk = slot.talks[j];
 					var talk_id = date + '-' + i + '-' + j;
+
+					if (!talk.description) {
+						talk.description = 'No description available.';
+					}
+
 					day_string += '<div class="talk" data-talk-id="' + talk_id + '">';
 					day_string += '<h3 class="talk-headline">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
 					day_string += '<div>Location: ' + talk.location + '</div>';
@@ -161,7 +171,7 @@
 	if (window.localStorage) {
 		var schedule = localStorage.getItem('schedule');
 		if (schedule) {
-			initSchedule(schedule);
+			initSchedule(schedule, true);
 		}
 	}
 
