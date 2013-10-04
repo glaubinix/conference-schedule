@@ -13,3 +13,11 @@ h2 {
 h3 {
 	color: #444;
 }
+
+.talk.starred h3::before {
+    background-color: #c00;
+}
+
+.talk.starred .star-button {
+    background-color: #c00;
+}
