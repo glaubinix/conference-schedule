@@ -1,25 +1,29 @@
+function ScheduleLoaderFactory() {
+
+}
+
+ScheduleLoaderFactory.prototype.getScheduleLoader = function(config) {
+	switch (config.schedule_loader.type) {
+		case 'json':
+			return new JsonScheduleLoader(config.schedule_loader.url);
+		case 'spreadsheet':
+			return new SpreadsheetScheduleLoader(config.schedule_loader.key);
+		default:
+			throw new Error('Requested an undefined schedule loader: ' + config.schedule_loader.type);
+	}
+}
+
 function ScheduleLoader() {
 	this.url = '';
 }
 
 ScheduleLoader.prototype.load = function(callback) {
-	var request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
-		if (request.readyState === 4 && request.status === 200) {
-			callback(request.responseText);
-		}
-	};
-
-	request.open("GET", this.url, true);
-	request.send();
+	var request = new Request(this.url);
+	request.load(callback);
 };
 
 function JsonScheduleLoader(file_name) {
-	if (file_name.indexOf("http://") != -1 || file_name.indexOf("https://") != -1) {
-		this.url = file_name;
-	} else {
-		this.url = 'data/' + file_name;
-	}
+	this.url = file_name;
 }
 
 JsonScheduleLoader.prototype = new ScheduleLoader();

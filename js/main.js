@@ -163,15 +163,22 @@
 		}
 	}
 
-	var loader = new JsonScheduleLoader('schedule.json');
-	loader.load(initSchedule);
+	var request = new Request('config.json');
+	request.load(function(raw_config) {
+		var config = JSON.parse(raw_config);
+		var schedule_loader_factory = new ScheduleLoaderFactory();
+		var loader = schedule_loader_factory.getScheduleLoader(config);
 
-	/*var parser = new JsconfLikeSpreadsheetParser();
-	var loader = new SpreadsheetScheduleLoader('0AoIOxKkr6fGqdGtHdWJqZFBJUnF1bEt3RVBsQUxINVE');
-	loader.load(function(result1) {
-		parser.convertCsvToJson(result1, function(result) {
-			parser.buildSchedule(result, initSchedule);
-		});
-	});*/
+		if (config.schedule_loader.type == 'spreadsheet') {
+			var parser = new JsconfLikeSpreadsheetParser();
+			loader.load(function(result1) {
+				parser.convertCsvToJson(result1, function(result) {
+					parser.buildSchedule(result, initSchedule);
+				});
+			});
+		} else {
+			loader.load(initSchedule);
+		}
+	});
 
 })();
