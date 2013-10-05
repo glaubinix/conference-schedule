@@ -10,6 +10,9 @@
 	request.load(function(raw_config) {
 		var config = JSON.parse(raw_config);
 
+		var theme_loader = new ThemeLoader();
+		theme_loader.loadTheme(config.theme);
+
 		var plugin_factory = new PluginFactory(emitter, view_helper)
 		for (var i in config.plugins) {
 			var plugin = plugin_factory.getPlugin(config.plugins[i]);
