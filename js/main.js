@@ -1,6 +1,11 @@
 (function() {
 	"use strict";
 
+	var emitter = new EventEmitter();
+
+	var current_day = new CurrentDay(emitter);
+	current_day.registerPlugin();
+
 	var initSchedule = function(response, loaded_from_storage) {
 		if (window.localStorage) {
 			// it makes absolutely no sense to rebuild the page if nothing changed
@@ -57,24 +62,7 @@
 
 		document.getElementById('schedule').innerHTML = schedule_container;
 
-		var now = new Date;
-		var month = now.getMonth() + 1;
-		if (month < 10) {
-			month = '0' + month;
-		}
-		var day = now.getDate();
-		if (day < 10) {
-			day = '0' + day;
-		}
-		var today = now.getFullYear() + '-' + month + '-' + now.getDate();
-		if (document.getElementById(today)) {
-			selectTab(today);
-		} else {
-			var first_tab = document.querySelector('.schedule-tab');
-			if (first_tab) {
-				selectTab(first_tab.getAttribute('data-day'));
-			}
-		}
+		emitter.trigger('schedule-rendered');
 
 		applyForSelector('description', function(element) {
 			addClass(element, 'hidden');
@@ -83,7 +71,7 @@
 		applyForSelector('schedule-tab', function(element) {
 			element.addEventListener('click', function(event) {
 				var day = event.target.getAttribute('data-day');
-				selectTab(day);
+				emitter.trigger('select-day', day);
 			});
 		});
 
@@ -123,13 +111,6 @@
         });
 	};
 
-	var selectTab = function (day) {
-		applyForSelector('day-schedule', function(element) { addClass(element, 'hidden') });
-		applyForSelector('schedule-tab', function(element) { removeClass(element, 'active-tab') });
-		removeClass(document.getElementById(day), 'hidden');
-		addClass(document.querySelector('[data-day="' + day + '"]'), 'active-tab');
-	};
-
 	var applyForSelector = function(class_selector, callback) {
 		var description_list = document.getElementsByClassName(class_selector);
 		var description_length = description_list.length;
@@ -166,6 +147,8 @@
         }
 	};
 
+	var page_builder = new PageBuilder(emitter);
+
 	if (window.localStorage) {
 		var schedule = localStorage.getItem('schedule');
 		if (schedule) {
@@ -177,7 +160,6 @@
 	request.load(function(raw_config) {
 		var config = JSON.parse(raw_config);
 
-		var page_builder = new PageBuilder();
 		page_builder.setConferenceTitle(config.conference);
 
 		var schedule_loader_factory = new ScheduleLoaderFactory();
