@@ -11,6 +11,8 @@ PluginFactory.prototype.getPlugin = function(plugin_name) {
 			return new Star(this.emitter, this.view_helper);
 		case 'refresh':
 			return new Refresh(this.emitter, this.view_helper);
+		case 'local-storage':
+			return new LocalStorage(this.emitter);
 		default:
 			throw new Error('Plugin does not exist with name: ' + plugin_name);
 	}

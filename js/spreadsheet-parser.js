@@ -150,5 +150,5 @@ JsconfLikeSpreadsheetParser.prototype.buildSchedule = function(json_array, callb
 
 	}
 
-	callback(JSON.stringify(schedule));
+	callback(schedule);
 };

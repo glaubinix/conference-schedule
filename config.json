@@ -8,6 +8,7 @@
 	"plugins": [
 		"current-day",
 		"star",
-		"refresh"
+		"refresh",
+		"local-storage"
 	]
 }
