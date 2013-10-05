@@ -60,7 +60,7 @@ PageBuilder.prototype.renderSchedule = function(conference_schedule) {
 				day_string += '<div class="talk" data-talk-id="' + talk_id + '">';
 				day_string += '<h3 class="talk-headline">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
 				day_string += '<div>Location: ' + talk.location + '</div>';
-				day_string += '<div id="' + talk_id + '" class="description hidden">' +talk.description + '<div><span class="star-button"></span></div></div>';
+				day_string += '<div id="' + talk_id + '" class="description hidden">' +talk.description + '</div>';
 				day_string += '</div>';
 			}
 		}
