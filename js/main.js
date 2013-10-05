@@ -70,22 +70,6 @@
 			});
 		});
 
-		applyForSelector('refresh-tab', function(element) {
-			element.addEventListener('click', function(event) {
-				addClass(element, 'refreshing');
-
-				// I know, this is really dirty, but we need to refactor it anyway :)
-				var request = new XMLHttpRequest();
-				request.onreadystatechange = function() {
-					if (request.readyState === 4 && request.status === 200) {
-						initSchedule(request.responseText);
-					}
-				};
-				request.open("GET", 'data/schedule.json', true);
-				request.send();
-			});
-		});
-
 		applyForSelector('talk', function(element) {
 			element.addEventListener('click', function() {
 				var talk_id = element.getAttribute('data-talk-id');
