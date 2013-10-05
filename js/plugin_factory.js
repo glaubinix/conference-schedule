@@ -1,0 +1,13 @@
+function PluginFactory(emitter, view_helper) {
+	this.emitter = emitter;
+	this.view_helper = view_helper;
+}
+
+PluginFactory.prototype.getPlugin = function(plugin_name) {
+	switch (plugin_name) {
+		case 'current-day':
+			return new CurrentDay(this.emitter);
+		default:
+			throw new Error('Plugin does not exist with name: ' + plugin_name);
+	}
+}

@@ -1,11 +1,6 @@
 (function() {
 	"use strict";
 
-	var emitter = new EventEmitter();
-
-	var current_day = new CurrentDay(emitter);
-	current_day.registerPlugin();
-
 	var initSchedule = function(response, loaded_from_storage) {
 		if (window.localStorage) {
 			// it makes absolutely no sense to rebuild the page if nothing changed
@@ -147,20 +142,27 @@
         }
 	};
 
-	var page_builder = new PageBuilder(emitter);
-
-	if (window.localStorage) {
-		var schedule = localStorage.getItem('schedule');
-		if (schedule) {
-			initSchedule(schedule, true);
-		}
-	}
+	var emitter = new EventEmitter();
+	var view_helper = new ViewHelper();
+	var page_builder = new PageBuilder(emitter, view_helper);
 
 	var request = new Request('config.json');
 	request.load(function(raw_config) {
 		var config = JSON.parse(raw_config);
 
+		var plugin_factory = new PluginFactory(emitter, view_helper)
+		for (var i in config.plugins) {
+			var plugin = plugin_factory.getPlugin(config.plugins[i]);
+			plugin.registerPlugin();
+		}
+
 		page_builder.setConferenceTitle(config.conference);
+		if (window.localStorage) {
+			var schedule = localStorage.getItem('schedule');
+			if (schedule) {
+				initSchedule(schedule, true);
+			}
+		}
 
 		var schedule_loader_factory = new ScheduleLoaderFactory();
 		var loader = schedule_loader_factory.getScheduleLoader(config);

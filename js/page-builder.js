@@ -1,6 +1,6 @@
-function PageBuilder(emitter) {
+function PageBuilder(emitter, view_helper) {
 	this.emitter = emitter;
-	this.view_helper = new ViewHelper();
+	this.view_helper = view_helper;
 
 	var self = this;
 	this.emitter.bind('select-day', function(day) {

@@ -4,5 +4,8 @@
 	"schedule_loader": {
 		"type": "json",
 		"url": "data/schedule.json"
-	}
+	},
+	"plugins": [
+		"current-day"
+	]
 }
