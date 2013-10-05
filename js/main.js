@@ -92,18 +92,6 @@
 				toggleClass(document.getElementById(talk_id), 'hidden');
 			});
 		});
-
-        applyForSelector('star-button', function(element) {
-            var talk_element = element.parentNode.parentNode.parentNode;
-
-            element.innerText = (hasClass(talk_element, 'starred') ? 'unstar' : 'star');
-
-            element.addEventListener('click', function(event) {
-                event.stopPropagation();
-                toggleClass(talk_element, 'starred');
-                element.innerText = (hasClass(talk_element, 'starred') ? 'unstar' : 'star');
-            });
-        });
 	};
 
 	var applyForSelector = function(class_selector, callback) {

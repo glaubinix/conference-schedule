@@ -6,6 +6,7 @@
 		"url": "data/schedule.json"
 	},
 	"plugins": [
-		"current-day"
+		"current-day",
+		"star"
 	]
 }

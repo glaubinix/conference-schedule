@@ -7,7 +7,9 @@ PluginFactory.prototype.getPlugin = function(plugin_name) {
 	switch (plugin_name) {
 		case 'current-day':
 			return new CurrentDay(this.emitter);
+		case 'star':
+			return new Star(this.emitter, this.view_helper);
 		default:
 			throw new Error('Plugin does not exist with name: ' + plugin_name);
 	}
-}
+};
