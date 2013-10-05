@@ -45,7 +45,7 @@
 					day_string += '<div class="talk" data-talk-id="' + talk_id + '">';
 					day_string += '<h3 class="talk-headline">' + talk.speaker + ' - ' +  talk.topic + '</h3>';
 					day_string += '<div>Location: ' + talk.location + '</div>';
-					day_string += '<div id="' + talk_id + '" class="description">' +talk.description + '<div><span class="star-button"></span></div></div>';
+					day_string += '<div id="' + talk_id + '" class="description hidden">' +talk.description + '<div><span class="star-button"></span></div></div>';
 					day_string += '</div>';
 				}
 			}
@@ -58,65 +58,12 @@
 		document.getElementById('schedule').innerHTML = schedule_container;
 
 		emitter.trigger('schedule-rendered');
-
-		applyForSelector('description', function(element) {
-			addClass(element, 'hidden');
-		});
-
-		applyForSelector('schedule-tab', function(element) {
-			element.addEventListener('click', function(event) {
-				var day = event.target.getAttribute('data-day');
-				emitter.trigger('select-day', day);
-			});
-		});
-
-		applyForSelector('talk', function(element) {
-			element.addEventListener('click', function() {
-				var talk_id = element.getAttribute('data-talk-id');
-				toggleClass(document.getElementById(talk_id), 'hidden');
-			});
-		});
-	};
-
-	var applyForSelector = function(class_selector, callback) {
-		var description_list = document.getElementsByClassName(class_selector);
-		var description_length = description_list.length;
-		for (var k = 0; k < description_length; k++) {
-			callback(description_list[k]);
-		}
-	};
-
-    var hasClass = function(element, css_class) {
-        return (element.getAttribute('class').split(' ').indexOf(css_class) != -1);
-    };
-
-	var addClass = function(element, css_class) {
-        if (!hasClass(element, css_class)) {
-            element.setAttribute('class', element.getAttribute('class') + ' ' + css_class);
-        }
-	};
-
-	var removeClass = function(element, css_class) {
-		var current_css_class = element.getAttribute('class').split(' ');
-		var index = current_css_class.indexOf(css_class);
-		if (index !== -1) {
-			current_css_class.splice(index, 1);
-		}
-
-		element.setAttribute('class', current_css_class.join(' '));
-	};
-
-	var toggleClass = function(element, css_class) {
-        if (hasClass(element, css_class)) {
-            removeClass(element, css_class);
-        } else {
-            addClass(element, css_class);
-        }
 	};
 
 	var emitter = new EventEmitter();
 	var view_helper = new ViewHelper();
 	var page_builder = new PageBuilder(emitter, view_helper);
+	page_builder.registerEvents();
 
 	var request = new Request('config.json');
 	request.load(function(raw_config) {

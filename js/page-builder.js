@@ -27,4 +27,23 @@ PageBuilder.prototype.selectDay = function(day) {
 	this.view_helper.addClass(document.querySelector('[data-day="' + day + '"]'), 'active-tab');
 };
 
+PageBuilder.prototype.registerEvents = function() {
+	var self = this;
+	this.emitter.bind('schedule-rendered', function() {
+		self.view_helper.applyForSelector('talk', function(element) {
+			element.addEventListener('click', function() {
+				var talk_id = element.getAttribute('data-talk-id');
+				self.view_helper.toggleClass(document.getElementById(talk_id), 'hidden');
+			});
+		});
+
+		self.view_helper.applyForSelector('schedule-tab', function(element) {
+			element.addEventListener('click', function(event) {
+				var day = event.target.getAttribute('data-day');
+				self.emitter.trigger('select-day', day);
+			});
+		});
+	});
+}
+
 MicroEvent.mixin(PageBuilder);
