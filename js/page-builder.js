@@ -32,7 +32,6 @@ PageBuilder.prototype.renderSchedule = function(conference_schedule) {
 	for (var date in conference_schedule) {
 		list += '<li data-day="' + date + '"" class="schedule-tab">' + date + '</li>';
 	}
-	list += '<li class="refresh-tab"><span class="refresh-icon"></span></li>';
 
 	document.getElementById('schedule-tabs').setAttribute('class', 'tabs-' + Object.keys(conference_schedule).length);
 	document.getElementById('schedule-tabs').innerHTML = list;
