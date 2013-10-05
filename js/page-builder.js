@@ -71,6 +71,11 @@ PageBuilder.prototype.renderSchedule = function(conference_schedule) {
 
 	document.getElementById('schedule').innerHTML = schedule_container;
 
+	var first_tab = document.querySelector('.schedule-tab');
+	if (first_tab) {
+		this.emitter.trigger('select-day', first_tab.getAttribute('data-day'));
+	}
+
 	this.emitter.trigger('schedule-rendered');
 }
 
