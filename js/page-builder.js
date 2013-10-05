@@ -1,11 +1,8 @@
 function PageBuilder(emitter, view_helper) {
+	this.conference_schedule;
+
 	this.emitter = emitter;
 	this.view_helper = view_helper;
-
-	var self = this;
-	this.emitter.bind('select-day', function(day) {
-		self.selectDay(day);
-	});
 };
 
 PageBuilder.prototype.setConferenceTitle = function(title) {
@@ -28,6 +25,14 @@ PageBuilder.prototype.selectDay = function(day) {
 };
 
 PageBuilder.prototype.renderSchedule = function(conference_schedule) {
+	if (this.conference_schedule == conference_schedule) {
+		return;
+	} else {
+		this.conference_schedule = conference_schedule;
+	}
+
+	conference_schedule = JSON.parse(conference_schedule);
+
 	var list = "";
 	for (var date in conference_schedule) {
 		list += '<li data-day="' + date + '"" class="schedule-tab">' + date + '</li>';
@@ -81,6 +86,11 @@ PageBuilder.prototype.renderSchedule = function(conference_schedule) {
 
 PageBuilder.prototype.registerEvents = function() {
 	var self = this;
+
+	this.emitter.bind('select-day', function(day) {
+		self.selectDay(day);
+	});
+
 	this.emitter.bind('schedule-data-ready', function(schedule_data) {
 		self.renderSchedule(schedule_data);
 	});

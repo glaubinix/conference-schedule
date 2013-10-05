@@ -19,9 +19,7 @@ function ScheduleLoader() {
 
 ScheduleLoader.prototype.load = function(callback) {
 	var request = new Request(this.url);
-	request.load(function(result) {
-		callback(JSON.parse(result));
-	});
+	request.load(callback);
 };
 
 function JsonScheduleLoader(file_name) {

@@ -17,12 +17,6 @@
 		}
 
 		page_builder.setConferenceTitle(config.conference);
-		if (false && window.localStorage) {
-			var schedule = localStorage.getItem('schedule');
-			if (schedule) {
-				//page_builder.renderSchedule(schedule);
-			}
-		}
 
 		var schedule_loader_factory = new ScheduleLoaderFactory();
 		var loader = schedule_loader_factory.getScheduleLoader(config);
