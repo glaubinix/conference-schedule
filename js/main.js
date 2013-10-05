@@ -11,24 +11,22 @@
 			localStorage.setItem('schedule', response);
 		}
 
-		var data = JSON.parse(response);
-		document.getElementsByTagName('title')[0].innerText = data.conference;
-		document.getElementById('headline').innerHTML = data.conference;
+		var conference_schedule = JSON.parse(response);
 
 		var list = "";
-		for (var date in data.schedule) {
+		for (var date in conference_schedule) {
 			list += '<li data-day="' + date + '"" class="schedule-tab">' + date + '</li>';
 		}
 		list += '<li class="refresh-tab"><span class="refresh-icon"></span></li>';
 
-		document.getElementById('schedule-tabs').setAttribute('class', 'tabs-' + Object.keys(data.schedule).length);
+		document.getElementById('schedule-tabs').setAttribute('class', 'tabs-' + Object.keys(conference_schedule).length);
 		document.getElementById('schedule-tabs').innerHTML = list;
 
 		var schedule_container = "";
-		for (date in data.schedule) {
+		for (date in conference_schedule) {
 			var day_string = '<div id="' +  date + '" class="day-schedule">';
 
-			var schedule = data.schedule[date];
+			var schedule = conference_schedule[date];
 
 			var schedule_length = schedule.length;
 			for (var i = 0; i < schedule_length; i++) {
@@ -178,6 +176,10 @@
 	var request = new Request('config.json');
 	request.load(function(raw_config) {
 		var config = JSON.parse(raw_config);
+
+		var page_builder = new PageBuilder();
+		page_builder.setConferenceTitle(config.conference);
+
 		var schedule_loader_factory = new ScheduleLoaderFactory();
 		var loader = schedule_loader_factory.getScheduleLoader(config);
 

@@ -78,8 +78,6 @@ JsconfLikeSpreadsheetParser.prototype.constructor = JsconfLikeSpreadsheetParser;
 
 JsconfLikeSpreadsheetParser.prototype.buildSchedule = function(json_array, callback) {
 	var schedule = {};
-	schedule.conference = 'jsconf.eu';
-	schedule.schedule = {};
 
 	var day;
 	var day_identifier;
@@ -95,7 +93,7 @@ JsconfLikeSpreadsheetParser.prototype.buildSchedule = function(json_array, callb
 
 		if (row_data[0].indexOf('Day') !== -1) {
 			if (typeof day !== 'undefined') {
-				schedule.schedule[day_identifier] = day;
+				schedule[day_identifier] = day;
 			}
 
 			day_identifier = row_data[0].replace(/([\r\n])/, "").replace(/(\s)/, "");
