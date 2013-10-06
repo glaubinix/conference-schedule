@@ -11,7 +11,7 @@ ScheduleLoaderFactory.prototype.getScheduleLoader = function(config) {
 		default:
 			throw new Error('Requested an undefined schedule loader: ' + config.schedule_loader.type);
 	}
-}
+};
 
 function ScheduleLoader() {
 	this.url = '';
