@@ -4,14 +4,21 @@
 To use this app for your own conference you need to change the following points:
 
 * Create your own favicon and apple-touch-icon
+* Adjust the config file (Always everything can be configured this way. Only new functionality needs to be added separately).
 * Adjust the css to your liking (or simply use a theme)
 * Create a schedule.json with the conference schedule
-* If you add custom css / js file, make sure to add them to the conference.appcache file for offline mode
+* If you add custom css / js file, make sure to add them to the conference.appcache file for offline mode (WIP)
 
 ### Features
 * Load a schedule via json
+* Plugin System
 * Current date tab will be preselected (if not applicable the first day will be selected)
-* Offline available using local storage and app cache
+* Reminder/Start system to mark talks (to see them later or use it for whatever you think might be usefull) (WIP)
+* Offline available using local storage and app cache (WIP)
+
+### Plugin System
+We started implementing an event based plugin system. The idea behind it is that one does not have to change the core to add new functionality (apart from a couple of event trigger).
+If you would like to see some new functionality then simply create a plugin. The plugin needs to implement exactly one method "registerPlugin". To be able to use it, you have to add it to the plugin factory and afterwards it can be turned on via config file.
 
 ### Loading Google Spreadsheets
 A lot of conferences I have seen so far use public spreadsheets to store their conference schedule which on the one hand is cool because you can access the data easily but on the other hand every spreadsheet looks a bit different and therefore needs to be parsed different.
