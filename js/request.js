@@ -12,4 +12,4 @@ Request.prototype.load = function(callback) {
 
 	request.open("GET", this.url, true);
 	request.send();
-}
+};

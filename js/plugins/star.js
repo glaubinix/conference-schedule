@@ -22,4 +22,4 @@ Star.prototype.registerPlugin = function() {
 			});
 		});
 	});
-}
+};

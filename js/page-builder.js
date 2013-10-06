@@ -1,9 +1,8 @@
 function PageBuilder(emitter, view_helper) {
-	this.conference_schedule;
-
+	this.conference_schedule = null;
 	this.emitter = emitter;
 	this.view_helper = view_helper;
-};
+}
 
 PageBuilder.prototype.setConferenceTitle = function(title) {
 	document.getElementsByTagName('title')[0].innerText = title;
@@ -27,10 +26,9 @@ PageBuilder.prototype.selectDay = function(day) {
 PageBuilder.prototype.renderSchedule = function(conference_schedule) {
 	if (this.conference_schedule == conference_schedule) {
 		return;
-	} else {
-		this.conference_schedule = conference_schedule;
 	}
 
+	this.conference_schedule = conference_schedule;
 	conference_schedule = JSON.parse(conference_schedule);
 
 	var list = "";
@@ -82,7 +80,7 @@ PageBuilder.prototype.renderSchedule = function(conference_schedule) {
 	}
 
 	this.emitter.trigger('schedule-rendered');
-}
+};
 
 PageBuilder.prototype.registerEvents = function() {
 	var self = this;
@@ -110,6 +108,6 @@ PageBuilder.prototype.registerEvents = function() {
 			});
 		});
 	});
-}
+};
 
 MicroEvent.mixin(PageBuilder);

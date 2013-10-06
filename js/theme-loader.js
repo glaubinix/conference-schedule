@@ -11,9 +11,9 @@ ThemeLoader.prototype.loadTheme = function(theme) {
 };
 
 ThemeLoader.prototype.fetchTheme = function(theme) {
-	var file = document.createElement("link")
-	file.setAttribute("rel", "stylesheet")
-	file.setAttribute("type", "text/css")
+	var file = document.createElement("link");
+	file.setAttribute("rel", "stylesheet");
+	file.setAttribute("type", "text/css");
 	file.setAttribute("href", 'css/themes/' + theme + '.css');
 
 	if (typeof file !== "undefined") {
