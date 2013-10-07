@@ -1,0 +1,16 @@
+{
+	"name": "conference-schedule/conference-schedule",
+	"license": "MIT",
+	"type": "project",
+	"description": "Simple conference schedule app",
+	"authors": [
+		{
+			"name": "Stephan Vock",
+			"email": "stephan.vock@gmail.com"
+		},
+		{
+			"name": "Norman Soetbeer",
+			"email": "norman.soetbeer@gmail.com"
+		}
+	]
+}
