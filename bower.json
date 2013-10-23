@@ -1,0 +1,17 @@
+{
+	"name": "conference-schedule",
+	"version": "0.1.0",
+	"homepage": "https://github.com/glaubinix/conference-schedule",
+	"description": "A cross-device conference schedule app.",
+	"main": "index.html",
+	"keywords": [
+		"conference",
+		"schedule"
+	],
+	"license": "MIT",
+	"private": true,
+	"devDependencies": {
+		"jasmine": "1.3.1"
+	}
+}
+
