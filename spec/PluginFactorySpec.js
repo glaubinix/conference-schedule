@@ -1,10 +1,11 @@
 describe("PluginFactory", function() {
 	var plugin_factory;
 	var emitter;
+	var view_helper;
 
 	beforeEach(function() {
-		var view_helper = jasmine.createSpy('ViewHelper');
 		emitter = jasmine.createSpy('Emitter');
+		view_helper = jasmine.createSpy('ViewHelper');
 		plugin_factory = new PluginFactory(emitter, view_helper); 
 	});
 
@@ -19,6 +20,11 @@ describe("PluginFactory", function() {
 	it("creates a CurrentDay plugin", function() {
 		var actual = plugin_factory.getPlugin('current-day');
 		expect(actual).toEqual(new CurrentDay(emitter));
+	});
+
+	it("creates a Star plugin", function() {
+		var actual = plugin_factory.getPlugin('star');
+		expect(actual).toEqual(new Star(emitter,view_helper));
 	});
 });
 
