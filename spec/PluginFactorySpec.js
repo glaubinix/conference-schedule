@@ -26,5 +26,10 @@ describe("PluginFactory", function() {
 		var actual = plugin_factory.getPlugin('star');
 		expect(actual).toEqual(new Star(emitter,view_helper));
 	});
+
+	it("creates a Refresh plugin", function() {
+		var actual = plugin_factory.getPlugin('refresh');
+		expect(actual).toEqual(new Refresh(emitter,view_helper));
+	});
 });
 
