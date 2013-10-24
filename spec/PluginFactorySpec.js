@@ -31,5 +31,10 @@ describe("PluginFactory", function() {
 		var actual = plugin_factory.getPlugin('refresh');
 		expect(actual).toEqual(new Refresh(emitter,view_helper));
 	});
+
+	it("creates a LocalStorage plugin", function() {
+		var actual = plugin_factory.getPlugin('local-storage');
+		expect(actual).toEqual(new LocalStorage(emitter,view_helper));
+	});
 });
 
