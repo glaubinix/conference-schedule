@@ -48,5 +48,16 @@ describe("MicroEvent", function() {
 		expect(event_funcs.baz.calls.length).toEqual(1);
 	});
 
+	it("passes arguments to all functions bound to the same event", function() {
+		micro_event.bind('event_one', event_funcs.foo);
+		micro_event.bind('event_one', event_funcs.bar);
+		micro_event.bind('event_one', event_funcs.baz);
+
+		micro_event.trigger('event_one', 1, 2);
+
+		expect(event_funcs.foo).toHaveBeenCalledWith(1, 2);
+		expect(event_funcs.bar).toHaveBeenCalledWith(1, 2);
+		expect(event_funcs.baz).toHaveBeenCalledWith(1, 2);
+	});
 });
 
