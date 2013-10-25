@@ -59,5 +59,24 @@ describe("MicroEvent", function() {
 		expect(event_funcs.bar).toHaveBeenCalledWith(1, 2);
 		expect(event_funcs.baz).toHaveBeenCalledWith(1, 2);
 	});
+
+	it("binds functions to several different events", function() {
+		micro_event.bind('event_one', event_funcs.foo);
+		micro_event.bind('event_two', event_funcs.bar);
+		micro_event.bind('event_three', event_funcs.baz);
+
+		micro_event.trigger('event_one');
+		micro_event.trigger('event_two');
+		micro_event.trigger('event_three');
+
+		expect(event_funcs.foo).toHaveBeenCalled();
+		expect(event_funcs.foo.calls.length).toEqual(1);
+
+		expect(event_funcs.bar).toHaveBeenCalled();
+		expect(event_funcs.bar.calls.length).toEqual(1);
+
+		expect(event_funcs.baz).toHaveBeenCalled();
+		expect(event_funcs.baz.calls.length).toEqual(1);
+	});
 });
 
