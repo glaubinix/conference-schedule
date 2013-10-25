@@ -10,11 +10,13 @@ describe("MicroEvent", function() {
 			bar: function() {},
 			baz: function() {}
 		};
+		spyOn(event_funcs, 'foo');
+		spyOn(event_funcs, 'bar');
+		spyOn(event_funcs, 'baz');
+
 	});
 
 	it("can bind a single function to an event", function() {
-		spyOn(event_funcs, 'foo');
-
 		micro_event.bind('event_one', event_funcs.foo);
 		micro_event.trigger('event_one');
 
@@ -23,8 +25,6 @@ describe("MicroEvent", function() {
 	});
 
 	it("can pass arguments to a bound function", function() {
-		spyOn(event_funcs, 'foo');
-
 		micro_event.bind('event_one', event_funcs.foo);
 		micro_event.trigger('event_one', 1, 2);
 
@@ -32,10 +32,6 @@ describe("MicroEvent", function() {
 	});
 
 	it("can bind a several functions to one event", function() {
-		spyOn(event_funcs, 'foo');
-		spyOn(event_funcs, 'bar');
-		spyOn(event_funcs, 'baz');
-
 		micro_event.bind('event_one', event_funcs.foo);
 		micro_event.bind('event_one', event_funcs.bar);
 		micro_event.bind('event_one', event_funcs.baz);
