@@ -93,7 +93,7 @@ describe("MicroEvent", function() {
 		expect(event_funcs.bar.calls.length).toEqual(1);
 	});
 
-	it("doesn't do anything when triggering unknown events", function() {
+	it("keeps working when triggering unknown event", function() {
 		micro_event.bind('event_one', event_funcs.foo);
 		micro_event.bind('event_two', event_funcs.bar);
 
@@ -103,7 +103,7 @@ describe("MicroEvent", function() {
 		expect(event_funcs.bar).not.toHaveBeenCalled();
 	});
 
-	it("doesn't do anything when unbinding unknown event", function() {
+	it("keeps working when unbinding unknown event", function() {
 		micro_event.bind('event_one', event_funcs.foo);
 		micro_event.unbind('unknown_event');
 
