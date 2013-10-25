@@ -102,5 +102,14 @@ describe("MicroEvent", function() {
 		expect(event_funcs.foo).not.toHaveBeenCalled();
 		expect(event_funcs.bar).not.toHaveBeenCalled();
 	});
+
+	it("doesn't do anything when unbinding unknown event", function() {
+		micro_event.bind('event_one', event_funcs.foo);
+		micro_event.unbind('unknown_event');
+
+		micro_event.trigger('event_one');
+
+		expect(event_funcs.foo).toHaveBeenCalled();
+	});
 });
 
