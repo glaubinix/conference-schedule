@@ -22,6 +22,15 @@ describe("MicroEvent", function() {
 		expect(event_funcs.foo.calls.length).toEqual(1);
 	});
 
+	it("can pass arguments to a bound function", function() {
+		spyOn(event_funcs, 'foo');
+
+		micro_event.bind('event_one', event_funcs.foo);
+		micro_event.trigger('event_one', 1, 2);
+
+		expect(event_funcs.foo).toHaveBeenCalledWith(1, 2);
+	});
+
 	it("can bind a several functions to one event", function() {
 		spyOn(event_funcs, 'foo');
 		spyOn(event_funcs, 'bar');
