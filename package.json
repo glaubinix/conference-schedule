@@ -1,0 +1,19 @@
+{
+	"name": "conference-schedule",
+	"version": "0.1.0",
+	"description": "Simple conference schedule app",
+	"main": "Gruntfile.js",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:glaubinix/conference-schedule.git"
+	},
+	"private": true,
+	"license": "MIT",
+	"scripts": {
+		"test": "grunt test"
+	},
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"grunt-contrib-jasmine": "~0.5.2"
+}
+}
