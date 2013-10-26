@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/glaubinix/conference-schedule.png?branch=master)](http://travis-ci.org/glaubinix/conference-schedule)
+
 ## Conference Schedule
 
 ### Launching the app
@@ -47,6 +49,15 @@ Meaning: if you attend a conference or if you're a curator feel free to add your
 Fork and Pull Request, what else?
 This project should stay as simple as possible. We would like to avoid having any dependencies likes jQuery or similar.
 Though feel free to add some eye candy, like themes or other improvements.
+
+### Tests
+Thanks to @kitec we got some nice tests. To run them:
+```
+npm install -g grunt-cli
+npm install
+npm test
+```
+or open the SpecRunner.html in your browser after npm install
 
 ### Special thanks to ...
 This project is highly inspired by the jsconf.eu 2013 offline schedule app by @philnash!
