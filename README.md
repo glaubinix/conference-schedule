@@ -51,7 +51,7 @@ This project should stay as simple as possible. We would like to avoid having an
 Though feel free to add some eye candy, like themes or other improvements.
 
 ### Tests
-Thanks to @kitec we got some nice tests. To run them:
+Thanks to @kiltec we got some nice tests. To run them:
 ```
 npm install -g grunt-cli
 npm install
