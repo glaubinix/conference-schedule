@@ -2,6 +2,14 @@ module.exports = function (grunt) {
 	"use strict";
 
 	grunt.initConfig({
+		connect: {
+			server: {
+				options: {
+					port: 8080,
+					keepalive: true
+				}
+			}
+		},
 		pkg: grunt.file.readJSON('package.json'),
 		jasmine: {
 			src: [
@@ -26,7 +34,9 @@ module.exports = function (grunt) {
 	})
 
 	grunt.loadNpmTasks('grunt-contrib-jasmine')
+	grunt.loadNpmTasks('grunt-contrib-connect')
 
 	grunt.registerTask('test', ['jasmine'])
-	grunt.registerTask('default', ['test'])
+	grunt.registerTask('serve', ['connect'])
+	grunt.registerTask('default', ['test', 'serve'])
 };

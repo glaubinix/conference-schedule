@@ -4,21 +4,11 @@
 
 ### Launching the app
 In order to view the schedule locally, you have to launch a local web server.
-Under Linux with Python >= 2.4 available you can do so with:
 
 ```
-cd /path/to/conference-schedule
-python -m SimpleHTTPServer 8000
+npm install
+grunt
 ```
-
-With PHP >= 5.4 you can do so with:
-
-```
-cd /path/to/conference-schedule
-php -S localhost:8000
-```
-
-Using both Python and PHP you can now launch your favorite browser, go to http://localhost:8000 and see the currently configured schedule.
 
 ### Customization
 To use this app for your own conference you need to change the following points:
