@@ -1,9 +1,15 @@
-var config = require('./config.json')
-
 module.exports = function (grunt) {
 	"use strict";
 
 	grunt.initConfig({
+		connect: {
+			server: {
+				options: {
+					port: 8080,
+					keepalive: true
+				}
+			}
+		},
 		pkg: grunt.file.readJSON('package.json'),
 		cssc: {
 			build: {
@@ -43,11 +49,12 @@ module.exports = function (grunt) {
 				specs: "spec/**/*.js"
 			}
 		}
-	});
+	})
 
 	require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
 	grunt.registerTask('buildcss',  ['cssc', 'cssmin']);
 	grunt.registerTask('test', ['jasmine'])
-	grunt.registerTask('default', ['test'])
+	grunt.registerTask('serve', ['connect'])
+	grunt.registerTask('default', ['test', 'serve'])
 };
