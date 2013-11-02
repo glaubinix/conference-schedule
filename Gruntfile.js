@@ -1,3 +1,5 @@
+var config = require('./config.json');
+
 module.exports = function (grunt) {
 	"use strict";
 
@@ -11,6 +13,24 @@ module.exports = function (grunt) {
 			}
 		},
 		pkg: grunt.file.readJSON('package.json'),
+		cssc: {
+			build: {
+				options: {
+					consolidateViaDeclarations: true,
+					consolidateViaSelectors:    true,
+					consolidateMediaQueries:    true
+				},
+				files: {
+					'build/css/master.css': ['css/normalize.css', 'css/main.css', 'css/themes/' + config['theme'] + '.css']
+				}
+			}
+		},
+		cssmin: {
+			build: {
+				src: 'build/css/master.css',
+				dest: 'build/css/master.css'
+			}
+		},
 		jasmine: {
 			src: [
 				"js/libs/microevent.js",
@@ -33,9 +53,9 @@ module.exports = function (grunt) {
 		}
 	})
 
-	grunt.loadNpmTasks('grunt-contrib-jasmine')
-	grunt.loadNpmTasks('grunt-contrib-connect')
+	require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
+	grunt.registerTask('buildcss',  ['cssc', 'cssmin']);
 	grunt.registerTask('test', ['jasmine'])
 	grunt.registerTask('serve', ['connect'])
 	grunt.registerTask('default', ['test', 'serve'])
