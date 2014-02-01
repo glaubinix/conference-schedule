@@ -6,10 +6,18 @@
 	var page_builder = new PageBuilder(emitter, view_helper);
 	page_builder.registerEvents();
 
-	var request = new Request('config.json');
-	request.load(function(raw_config) {
-		var config = JSON.parse(raw_config);
+	var raw_config = document.body.dataset['config'];
+	if (raw_config) {
+		display(raw_config)
+	} else {
+		var request = new Request('config.json');
+		request.load(function(raw_config) {
+			display(raw_config);
+		});
+	}
 
+	function display(raw_config) {
+		var config = JSON.parse(raw_config);
 		var theme_loader = new ThemeLoader();
 		theme_loader.loadTheme(config.theme);
 
@@ -38,6 +46,6 @@
 				emitter.trigger('schedule-data-ready', result);
 			});
 		}
-	});
+	}
 
 })();
