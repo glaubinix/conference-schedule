@@ -7,7 +7,10 @@
 		"type": "git",
 		"url": "git@github.com:glaubinix/conference-schedule.git"
 	},
-	"private": true,
+	"authors": [
+		"Stephan Vock <stephan.vock@gmail.com>",
+		"Norman Soetbeer <norman.soetbeer@gmail.com>"
+	],
 	"license": "MIT",
 	"scripts": {
 		"test": "grunt test"
