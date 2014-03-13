@@ -21,5 +21,3 @@ CurrentDay.prototype.registerPlugin = function() {
 		}
 	});
 };
-
-MicroEvent.mixin(CurrentDay);
