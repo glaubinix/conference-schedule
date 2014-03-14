@@ -1,14 +1,12 @@
 function ChangeNotify(emitter, view_helper) {
 	this.emitter = emitter;
 	this.view_helper = view_helper;
+
+	this.view = new NotifyView(this.view_helper);
 }
 
 ChangeNotify.prototype.registerPlugin = function() {
 	var self = this;
-	// set up some sort of layer
-	var element = document.createElement('div');
-	element.setAttribute('class', 'change-notify');
-	document.getElementsByTagName('body')[0].appendChild(element);
 
 	var current = null;
 	this.emitter.bind('schedule-data-ready', function(conference_data) {
@@ -18,76 +16,166 @@ ChangeNotify.prototype.registerPlugin = function() {
 		}
 
 		// compare talks -> Note: this might get really tricky
-		var currentData = JSON.parse(current),
-			newData = JSON.parse(conference_data);
+		var newTalks = self.prepareSchedule(JSON.parse(conference_data)),
+			currentTalks = self.prepareSchedule(JSON.parse(current)),
+			oldDiffs = [],
+			newDiffs = [],
+			i,
+			talk;
 
-		diff(currentData, newData, ["talk", "talks", "slot", "day", "schedule"]);
+		for (i in newTalks) {
+			if (typeof currentTalks[i] === "undefined") {
+				newDiffs.push(newTalks[i]);
+			} else {
+				delete newTalks[i];
+				delete currentTalks[i];
+			}
+		}
+
+		for (i in currentTalks) {
+			oldDiffs.push(currentTalks[i]);
+		}
+
+		while (newDiffs.length > 0) {
+			oldDiffs = self.calcDiff(newDiffs.pop(), oldDiffs);
+		}
+
+		while (oldDiffs.length > 0) {
+			if (talk = oldDiffs.pop()) {
+				self.view.removedTalk(talk);
+			}
+		}
 
 		// decide on output format
-		element.innerHTML = "different";
 		current = conference_data;
 	});
 };
 
-var propertyLength = 0,
-	propertyDiff = 1;
+ChangeNotify.prototype.prepareSchedule = function(rawData) {
+	var talks = [],
+		day,
+		i,
+		j,
+		slot,
+		talk,
+		time;
+	for (day in rawData) {
+		for (i in rawData[day]) {
+			slot = rawData[day][i];
+			time = slot.time;
+			for (j in slot.talks) {
+				talk = slot.talks[j];
+				talk.day = day;
+				talk.time = time;
 
-function objectKeys(obj) {
-	if (typeof Object.keys === 'function') {
-		return Object.keys(obj);
-	}
-
-	var keys = [];
-	for (var key in obj) keys.push(key);
-	return keys;
-}
-
-function diff(a, b, types) {
-	types = JSON.parse(JSON.stringify(types))
-	try {
-		var type = types.pop(),
-			ka = objectKeys(a),
-			kb = objectKeys(b),
-			key, i;
-	} catch (e) {//happens when one is a string literal and the other isn't
-		return; // this should never happen :)
-	}
-
-	// having the same number of owned properties (keys incorporates
-	// hasOwnProperty)
-	if (ka.length != kb.length)
-		return notify(a, b, type, propertyLength);
-	//the same set of keys (although not necessarily the same order),
-	ka.sort();
-	kb.sort();
-
-	//equivalent values for every corresponding key, and
-	//~~~possibly expensive deep test
-	for (i = ka.length - 1; i >= 0; i--) {
-		key = ka[i];
-		if (typeof a[key] === 'object') {
-			diff(a[key], b[key], types);
-		} else if (a[key] != b[key]) {
-			notify(a, b, type, propertyDiff);
+				talks[JSON.stringify(talk)] = talk;
+			}
 		}
 	}
-}
 
+	return talks;
+};
 
-// somehow
-function notify(a, b, type, typeDiff) {
-	if ('talks' === type) {
-		if (propertyLength === typeDiff) {
-			console.log("new talk added @todo figure out which one")
-		} else {
-			console.log("ignore, some sort of structure change")
+ChangeNotify.prototype.calcDiff = function(talk, talks) {
+	if (0 === talks.length) {
+		this.view.newTalk(talk);
+		return [];
+	}
+
+	var i,
+		compare;
+	for (i in talks) {
+		compare = talks[i];
+		if (compare.speaker === talk.speaker
+			&& compare.topic === talk.topic) {
+
+			if (compare.description !== talk.description) {
+				this.view.descriptionTalk(talk);
+			}
+
+			if (compare.day === talk.day
+				&& compare.time.start === talk.time.start
+				&& compare.time.end === talk.time.end
+				&& compare.location !== talk.location) {
+				this.view.locationMovedTalk(talk);
+			} else if ((compare.day !== talk.day
+				|| compare.time.start !== talk.time.start
+				|| compare.time.end !== talk.time.end)
+				&& compare.location === talk.location) {
+				this.view.timeMovedTalk(talk);
+			} else if (compare.day !== talk.day
+				|| compare.time.start !== talk.time.start
+				|| compare.time.end !== talk.time.end
+				|| compare.location !== talk.location) {
+				this.view.movedTalk(talk);
+			}
+
+			delete talks[i];
+			return talks;
 		}
-	} else if ('talk' === type) {
-		if (propertyDiff === typeDiff) {
-			console.log("existing talk was adjusted @todo figure out which one and check if maybe two where switched")
-		} else {
-			console.log("check what was done, maybe properties where added for empty talk")
+
+		if (compare.day === talk.day
+			&& compare.time.start === talk.time.start
+			&& compare.time.end === talk.time.end
+			&& compare.location === talk.location) {
+			if (compare.speaker === talk.speaker
+				&& compare.topic !== talk.topic) {
+				delete talks[i];
+				this.view.topicTalk(talk)
+				return talks;
+			} else if (compare.speaker !== talk.speaker
+				&& compare.topic === talk.topic) {
+				delete talks[i];
+				this.view.speakerTalk(talk)
+				return talks;
+			}
 		}
 	}
-	console.log(a, b, type, typeDiff)
+
+	self.view.newTalk(talk);
+	return talks;
+};
+
+function NotifyView(view_helper) {
+	this.view_helper = view_helper;
+
+	this.element = document.createElement('div');
+	this.element.setAttribute('class', 'change-notify');
+	document.getElementsByTagName('body')[0].appendChild(this.element);
 }
+
+NotifyView.prototype.newTalk = function(talk) {
+	this.addChange("New talk added to the schedule: " + talk.topic + " by " + talk.speaker + " at " + talk.day + " " + talk.time.start + " - " + talk.time.end);
+};
+
+NotifyView.prototype.removedTalk = function(talk) {
+	this.addChange("Talk removed from schedule: " + talk.topic + " by " + talk.speaker + " at " + talk.day + " " + talk.time.start + " - " + talk.time.end);
+};
+
+NotifyView.prototype.locationMovedTalk = function(talk) {
+	this.addChange("New location for talk: " + talk.topic + " by " + talk.speaker + " will now be in " + talk.location);
+};
+
+NotifyView.prototype.timeMovedTalk = function(talk) {
+	this.addChange("New slot for talk: " + talk.topic + " by " + talk.speaker + " will now be at " + talk.day + " " + talk.time.start + " - " + talk.time.end);
+};
+
+NotifyView.prototype.movedTalk = function(talk) {
+	this.addChange("New slot for talk: " + talk.topic + " by " + talk.speaker + " will now be at " + talk.day + " " + talk.time.start + " - " + talk.time.end + " in " + talk.location);
+};
+
+NotifyView.prototype.descriptionTalk = function(talk) {
+	this.addChange("The Talk: " + talk.topic + " by " + talk.speaker + " got an updated description!")
+};
+
+NotifyView.prototype.topicTalk = function(talk) {
+	this.addChange("Topic update for talk by " + talk.speaker + " at " + talk.day + " " + talk.time.start + " - " + talk.time.end)
+};
+
+NotifyView.prototype.speakerTalk = function(talk) {
+	this.addChange("Speaker update for talk " + talk.topic + " at " + talk.day + " " + talk.time.start + " - " + talk.time.end)
+};
+
+NotifyView.prototype.addChange = function(change) {
+	this.element.innerHTML = this.element.innerHTML + '<div class="change-notify-entry">' + change + "</div>";
+};
