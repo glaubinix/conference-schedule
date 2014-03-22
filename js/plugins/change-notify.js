@@ -46,7 +46,6 @@ ChangeNotify.prototype.registerPlugin = function() {
 			}
 		}
 
-		// decide on output format
 		current = conference_data;
 	});
 };
@@ -139,6 +138,7 @@ ChangeNotify.prototype.calcDiff = function(talk, talks) {
 function NotifyView(view_helper) {
 	this.view_helper = view_helper;
 
+	this.changeCounter = 0;
 	this.element = document.createElement('div');
 	this.element.setAttribute('class', 'change-notify');
 	document.getElementsByTagName('body')[0].appendChild(this.element);
@@ -177,5 +177,22 @@ NotifyView.prototype.speakerTalk = function(talk) {
 };
 
 NotifyView.prototype.addChange = function(change) {
-	this.element.innerHTML = this.element.innerHTML + '<div class="change-notify-entry">' + change + "</div>";
+	var div = document.createElement('div'),
+		a = document.createElement('a');
+
+	div.setAttribute('class', 'change-notify-entry');
+	div.innerText = change;
+	a.setAttribute('class', 'change-notify-close');
+	a.id = "change" + (this.changeCounter++);
+	a.innerText = 'X';
+	a.href = "#";
+	div.appendChild(a);
+	this.element.appendChild(div);
+
+	//this.element.innerHTML = this.element.innerHTML + '<div class="change-notify-entry">' + change + '<a id="' + changeId + '" class="change-notify-close" href=""#" >X</a></div>';
+	var self = this;
+	div.addEventListener('click', function(event) {
+		self.element.removeChild(div);
+		event.preventDefault ? event.preventDefault() : event.returnValue = false;
+	}, false);
 };

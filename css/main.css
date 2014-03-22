@@ -117,12 +117,11 @@ h3 {
 }
 
 .change-notify {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     height: auto;
-    background-color: greenyellow;
 }
 
 .change-notify-entry {
@@ -131,4 +130,10 @@ h3 {
     border: #000000 solid 1px;
     background-color: red;
     padding: 5px;
+    font-size: 1.5em;
+}
+
+.change-notify-close {
+    float: right;
+    margin-right: 10px;
 }
