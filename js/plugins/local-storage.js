@@ -10,6 +10,7 @@ LocalStorage.prototype.registerPlugin = function() {
 		}
 
 		this.emitter.bind('schedule-data-ready', function(conference_data) {
+			var schedule = localStorage.getItem('schedule');
 			localStorage.setItem('schedule', conference_data);
 		});
 	}
