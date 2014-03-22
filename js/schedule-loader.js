@@ -30,7 +30,7 @@ JsonScheduleLoader.prototype = new ScheduleLoader();
 JsonScheduleLoader.prototype.constructor = JsonScheduleLoader;
 
 function SpreadsheetScheduleLoader(key) {
-	this.url = "https://docs.google.com/spreadsheet/pub?key=" + key + "&single=true&gid=1&output=csv";
+	this.url = "https://docs.google.com/spreadsheet/pub?key=" + key + "&single=true&output=csv";
 }
 
 SpreadsheetScheduleLoader.prototype = new ScheduleLoader();
