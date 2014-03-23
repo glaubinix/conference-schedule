@@ -6,6 +6,7 @@
 		"url": "data/schedule.json"
 	},
 	"plugins": [
+		"change-notify",
 		"current-day",
 		"refresh",
 		"star",

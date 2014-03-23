@@ -115,3 +115,25 @@ h3 {
 .talk.starred .star-button {
     background-color: #ff69b4;
 }
+
+.change-notify {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+.change-notify-entry {
+    width: 100%;
+    display: block;
+    border: #000000 solid 1px;
+    background-color: red;
+    padding: 5px;
+    font-size: 1.5em;
+}
+
+.change-notify-close {
+    float: right;
+    margin-right: 10px;
+}
