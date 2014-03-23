@@ -19,8 +19,9 @@ Refresh.prototype.registerPlugin = function() {
 				var request = new XMLHttpRequest();
 				request.onreadystatechange = function() {
 					if (request.readyState === 4 && request.status === 200) {
-						//initSchedule(request.responseText); // disabled for now
+						self.emitter.trigger('schedule-data-ready', request.responseText);
 					}
+					self.view_helper.removeClass(element, 'refreshing');
 				};
 
 				request.open("GET", 'data/schedule.json', true);
