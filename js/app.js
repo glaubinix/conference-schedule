@@ -1,6 +1,7 @@
 /*global app, me, $*/
 var Router = require('./router');
 var MainView = require('./views/main');
+var SubCollection = require('ampersand-subcollection');
 var domReady = require('domready');
 var Conference = require('./models/conference');
 var parser = require('./helpers/parser/default');
@@ -48,6 +49,14 @@ module.exports = {
     navigate: function (page) {
         var url = (page.charAt(0) === '/') ? page.slice(1) : page;
         this.router.history.navigate(url, {trigger: true});
+    },
+
+    getTalks: function (selector, value) {
+        return new SubCollection(this.talks, {
+            filter: function(model) {
+                return model.get(selector) == value;
+            }
+        })
     }
 };
 

@@ -2,8 +2,8 @@ module.exports = function (rawData) {
     var talks = [],
         id = 1;
 
-    for (date in rawData) {
-        var schedule = rawData[date];
+    for (day in rawData) {
+        var schedule = rawData[day];
 
         var schedule_length = schedule.length;
         for (var i = 0; i < schedule_length; i++) {
@@ -17,7 +17,7 @@ module.exports = function (rawData) {
                     talk.description = 'No description available.';
                 }
 
-                talk.date = date;
+                talk.day = day;
                 talk.time = slot.time;
 
                 if (!talk.id) talk.id = id++;
