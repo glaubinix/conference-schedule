@@ -50,8 +50,15 @@ module.exports = function (grunt) {
 			options: {
 				specs: "spec/**/*.js"
 			}
-		}
-	})
+		},
+        templatizer: {
+            default_options: {
+                files: {
+                    'js/template.js': ['templates/**/*.*']
+                }
+            }
+        }
+    });
 
 	require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
