@@ -15,7 +15,7 @@
 
     // body.jade compiled template
     templatizer["body"] = function tmpl_body() {
-        return '<body><h1 role="name"></h1><ul id="schedule-tabs" role="nav"></ul><div class="container"><main role="page-container"></main></div></body>';
+        return '<body><h1 role="name"></h1><main role="page-container"></main></body>';
     };
 
     // head.jade compiled template
@@ -25,12 +25,22 @@
 
     // pages/schedule.jade compiled template
     templatizer["pages"]["schedule"] = function tmpl_pages_schedule() {
-        return '<div><div role="talk-list" class="day-schedule"></div></div>';
+        return '<div><ul role="menu-entries" id="schedule-tabs" class="tabs-2"></ul><div role="talk-list" class="day-schedule"></div></div>';
+    };
+
+    // schedule/menuentry.jade compiled template
+    templatizer["schedule"]["menuentry"] = function tmpl_schedule_menuentry() {
+        return '<li role="entry" class="schedule-tab"></li>';
+    };
+
+    // schedule/slot.jade compiled template
+    templatizer["schedule"]["slot"] = function tmpl_schedule_slot() {
+        return '<h2 role="time"></h2><div role="talks"></div>';
     };
 
     // schedule/talk.jade compiled template
     templatizer["schedule"]["talk"] = function tmpl_schedule_talk() {
-        return '<div class="talk"><h3 class="talk-headline"><span role="speaker"></span><span> - </span><span role="topic"></span></h3><div>Location:<span role="location"></span></div><div role="description" class="hidden description"></div></div>';
+        return '<div class="talk"><h3 class="talk-headline"><span role="speaker"></span><span> -</span><span role="topic"></span></h3><div>Location:<span role="location"></span></div><div role="description" class="hidden description"></div></div>';
     };
 
     return templatizer;

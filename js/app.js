@@ -6,6 +6,7 @@ var domReady = require('domready');
 var Conference = require('./models/conference');
 var parser = require('./helpers/parser/default');
 var Talks = require('./models/talks');
+var Menu = require('./models/menu');
 var config = require('../config.json');
 
 module.exports = {
@@ -16,7 +17,12 @@ module.exports = {
         window.conference = new Conference(config);
         this.talks = new Talks();
         this.talks.setCustomParser(parser);
-        this.talks.fetch();
+        this.talks.fetch({reset: true});
+
+        this.menu = new Menu({'selector': 'day', talks: this.talks});
+        this.talks.on('all', function () {
+           self.menu.rebuildMenu(self.talks);
+        });
 
         // init our URL handlers and the history tracker
         this.router = new Router();
