@@ -13,6 +13,9 @@ var templates = require('../templates');
 
 module.exports = View.extend({
     template: templates.body,
+    props: {
+        conference: 'object'
+    },
     bindings: {
         'conference.name': '[role=name]'
     },
@@ -29,12 +32,12 @@ module.exports = View.extend({
 
         // main renderer
         this.renderWithTemplate({conference: conference});
+        document.title = conference.name;
 
         // init and configure our page switcher
         this.pageSwitcher = new ViewSwitcher(this.getByRole('page-container'), {
             show: function (newView, oldView) {
                 // it's inserted and rendered for me
-                document.title = _.result(newView, 'pageTitle') || "Conference Schedule";
                 document.scrollTop = 0;
 
                 // add a class specifying it's active
