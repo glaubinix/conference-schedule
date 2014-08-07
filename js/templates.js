@@ -30,7 +30,7 @@
 
     // schedule/menuentry.jade compiled template
     templatizer["schedule"]["menuentry"] = function tmpl_schedule_menuentry() {
-        return '<li role="entry" class="schedule-tab"></li>';
+        return '<li class="schedule-tab"><a role="entry"></a></li>';
     };
 
     // schedule/slot.jade compiled template

@@ -15,7 +15,7 @@ module.exports = Router.extend({
     defaultView: function () {
         this.trigger('page', new SchedulePage({
             model: app.menu,
-            collection: app.getTalks('day', '2013-09-22')
+            collection: app.getTalks('day', '2013-09-21')
         }));
     },
 
