@@ -6,32 +6,26 @@ var SchedulePage = require('./pages/schedule');
 module.exports = Router.extend({
     routes: {
         '': 'defaultView',
-        'day/:id': 'dayView',
-        'location/:id': 'locationView',
+        ':selector/:id': 'selectionView',
         '(*path)': 'catchAll'
     },
 
     // ------- ROUTE HANDLERS ---------
     defaultView: function () {
+        app.menu.selector = 'day';
+        app.menu.selectionValue = '2013-09-21';
         this.trigger('page', new SchedulePage({
             model: app.menu,
             collection: app.getTalks('day', '2013-09-21')
         }));
     },
 
-    dayView: function (id) {
-        app.menu.selector = 'day';
+    selectionView: function (selector, id) {
+        app.menu.selector = selector;
+        app.menu.selectionValue = id;
         this.trigger('page', new SchedulePage({
             model: app.menu,
-            collection: app.getTalks('day', id)
-        }));
-    },
-
-    locationView: function (id) {
-        app.menu.selector = 'location';
-        this.trigger('page', new SchedulePage({
-            model: app.menu,
-            collection: app.getTalks('location', id)
+            collection: app.getTalks(selector, id)
         }));
     },
 
