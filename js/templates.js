@@ -25,7 +25,7 @@
 
     // pages/schedule.jade compiled template
     templatizer["pages"]["schedule"] = function tmpl_pages_schedule() {
-        return '<div><ul role="menu-entries" id="schedule-tabs" class="tabs-2"></ul><div role="talk-list" class="day-schedule"></div></div>';
+        return '<div><ul role="menu-entries" id="schedule-tabs"></ul><div role="talk-list" class="day-schedule"></div></div>';
     };
 
     // schedule/menuentry.jade compiled template
