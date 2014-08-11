@@ -17,5 +17,6 @@ module.exports = View.extend({
         this.renderWithTemplate({menu: this.model});
         this.renderCollection(this.collection, TalkView, this.getByRole('talk-list'));
         this.renderCollection(this.model.menuEntries, MenuEntry, this.getByRole('menu-entries'));
+        dom.addClass(this.getByRole('menu-entries'), 'tabs-' + this.model.menuEntries.length)
     }
 });
