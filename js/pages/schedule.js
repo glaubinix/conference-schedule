@@ -11,12 +11,18 @@ module.exports = View.extend({
         this.model.menuEntries.once('all', function () {
             self.renderCollection(self.model.menuEntries, MenuEntry, self.getByRole('menu-entries'));
             dom.addClass(self.getByRole('menu-entries'), 'tabs-' + self.model.menuEntries.length);
+            dom.addClass(self.get('#menu-' + self.model.selector + '-' + self.model.selectionValue), 'active-tab');
         });
     },
     render: function () {
         this.renderWithTemplate({menu: this.model});
         this.renderCollection(this.collection, TalkView, this.getByRole('talk-list'));
         this.renderCollection(this.model.menuEntries, MenuEntry, this.getByRole('menu-entries'));
-        dom.addClass(this.getByRole('menu-entries'), 'tabs-' + this.model.menuEntries.length)
+
+        var length = this.model.menuEntries.length;
+        if (length) {
+            dom.addClass(this.getByRole('menu-entries'), 'tabs-' + length);
+            dom.addClass(this.get('#menu-' + this.model.selector + '-' + this.model.selectionValue), 'active-tab');
+        }
     }
 });

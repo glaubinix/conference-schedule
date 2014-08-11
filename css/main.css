@@ -15,7 +15,6 @@ h1 {
 #schedule-tabs > li {
 	text-align: center;
 	display: inline-block;
-	padding: 10px 0;
 }
 
 #schedule-tabs > li > a {
@@ -24,6 +23,7 @@ h1 {
     width:100%;
     text-decoration: none;
     color: #666;
+    padding: 10px 0;
 }
 
 #schedule-tabs > li > a.active-tab {
@@ -32,15 +32,15 @@ h1 {
 }
 
 #schedule-tabs.tabs-2 > li {
-	width: 45%;
+	width: 50%;
 }
 
 #schedule-tabs.tabs-3 > li {
-	width: 30%;
+	width: 33%;
 }
 
 #schedule-tabs.tabs-4 > li {
-	width: 22.5%;
+	width: 25%;
 }
 
 #schedule-tabs li.refresh-tab {

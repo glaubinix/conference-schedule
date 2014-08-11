@@ -7,6 +7,12 @@ module.exports = AmpersandState.extend({
         selector: ['string']
     },
     derived: {
+        identifier: {
+            deps: ['entry', 'selector'],
+            fn: function() {
+                return 'menu-' + this.selector + '-' + this.entry;
+            }
+        },
         href: {
             deps: ['entry', 'selector'],
             fn: function() {

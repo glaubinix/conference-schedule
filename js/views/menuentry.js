@@ -9,6 +9,11 @@ module.exports = View.extend({
             type: 'attribute',
             name: 'href',
             role: 'entry'
+        },
+        'model.identifier': {
+            type: 'attribute',
+            name: 'id',
+            role: 'entry'
         }
     }
 });
