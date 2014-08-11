@@ -40,7 +40,7 @@
 
     // schedule/talk.jade compiled template
     templatizer["schedule"]["talk"] = function tmpl_schedule_talk() {
-        return '<div class="talk"><h3 class="talk-headline"><span role="speaker"></span><span> -</span><span role="topic"></span></h3><div>Location:<span role="location"></span></div><div role="description" class="hidden description"></div></div>';
+        return '<div class="talk"><h3 class="talk-headline"><span role="speaker"></span><span> - </span><span role="topic"></span></h3><div>Location: <span role="location"></span></div><div role="description" class="hidden description"></div></div>';
     };
 
     return templatizer;
