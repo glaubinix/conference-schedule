@@ -21,6 +21,7 @@ module.exports = function (rawData) {
                 talk.time = slot.time;
 
                 if (!talk.id) talk.id = id++;
+                talk.comparator = Date.parse(talk.day + ' ' + talk.time.start) + talk.id;
 
                 talks.push(talk);
             }

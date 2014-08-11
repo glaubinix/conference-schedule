@@ -3,5 +3,6 @@ var Talk = require('./talk');
 
 module.exports = Collection.extend({
     model: Talk,
-    url: '/data/schedule.json'
+    url: '/data/schedule.json',
+    comparator: 'comparator'
 });
