@@ -7,7 +7,8 @@ module.exports = AmpersandState.extend({
         topic: ['string'],
         location: ['string'],
         description: ['string'],
-        day: ['string']
+        day: ['string'],
+        starred: ['boolean']
     },
     extraProperties: 'allow'
 });
