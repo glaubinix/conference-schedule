@@ -15,7 +15,7 @@
 
     // body.jade compiled template
     templatizer["body"] = function tmpl_body() {
-        return '<body><h1 role="name"></h1><main role="page-container"></main></body>';
+        return '<body><a href="/settings" class="settings-trigger"></a><h1 role="name"></h1><main role="page-container"></main></body>';
     };
 
     // head.jade compiled template
@@ -26,6 +26,11 @@
     // pages/schedule.jade compiled template
     templatizer["pages"]["schedule"] = function tmpl_pages_schedule() {
         return '<div><ul role="menu-entries" id="schedule-tabs"></ul><div role="talk-list" class="day-schedule"></div></div>';
+    };
+
+    // pages/settings.jade compiled template
+    templatizer["pages"]["settings"] = function tmpl_pages_settings() {
+        return '<div id="settings"><h2>Settings</h2><h3>Tab List</h3></div>';
     };
 
     // schedule/menuentry.jade compiled template

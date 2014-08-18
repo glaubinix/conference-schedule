@@ -10,5 +10,9 @@
 		"refresh",
 		"star",
 		"local-storage"
-	]
+	],
+    "tabs": [
+        "day",
+        "location"
+    ]
 }

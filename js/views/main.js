@@ -10,7 +10,6 @@ var domify = require('domify');
 var dom = require('ampersand-dom');
 var templates = require('../templates');
 
-
 module.exports = View.extend({
     template: templates.body,
     props: {
