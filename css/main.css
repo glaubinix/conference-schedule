@@ -92,7 +92,7 @@ h3 {
 	display: none;
 }
 
-.talk {
+.talk > div{
 	padding: 3px 10px;
 }
 
