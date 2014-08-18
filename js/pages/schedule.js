@@ -13,6 +13,29 @@ module.exports = View.extend({
             dom.addClass(self.getByRole('menu-entries'), 'tabs-' + self.model.menuEntries.length);
             dom.addClass(self.get('#menu-' + self.model.selector + '-' + self.model.selectionValue), 'active-tab');
         });
+
+        self.collection.on('sort', function() {
+            var lastDateTime = {
+                start: 0,
+                end: 0
+            },
+                element;
+
+            self.collection.each(function(entry) {
+                element = document.getElementById(entry.talkId);
+                console.log(element)
+                if (element) {
+                    element = element.getElementsByTagName('h2')[0];
+                    if (entry.time.start === lastDateTime.start && entry.time.end === lastDateTime.end) {
+                        dom.addClass(element, 'hidden');
+                    } else {
+                        dom.removeClass(element, 'hidden');
+                    }
+
+                    lastDateTime = entry.time;
+                }
+            });
+        })
     },
     render: function () {
         this.renderWithTemplate({menu: this.model});
@@ -24,5 +47,25 @@ module.exports = View.extend({
             dom.addClass(this.getByRole('menu-entries'), 'tabs-' + length);
             dom.addClass(this.get('#menu-' + this.model.selector + '-' + this.model.selectionValue), 'active-tab');
         }
+
+        var lastDateTime = {
+                start: 0,
+                end: 0
+        },
+            self = this,
+            element;
+        self.collection.each(function(entry) {
+            element = self.get('#' + entry.talkId);
+            if (element) {
+                element = element.getElementsByTagName('h2')[0];
+                if (entry.time.start === lastDateTime.start && entry.time.end === lastDateTime.end) {
+                    dom.addClass(element, 'hidden');
+                } else {
+                    dom.removeClass(element, 'hidden');
+                }
+
+                lastDateTime = entry.time;
+            }
+        });
     }
 });

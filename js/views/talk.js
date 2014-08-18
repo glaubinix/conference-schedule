@@ -5,11 +5,6 @@ var dom = require('ampersand-dom');
 module.exports = View.extend({
     template: templates.schedule.talk,
     bindings: {
-        'model.talkId': {
-            type: 'attribute',
-            name: 'id',
-            role: 'id'
-        },
         'model.topic': '[role=topic]',
         'model.location': '[role=location]',
         'model.speaker': '[role=speaker]',
@@ -41,6 +36,7 @@ module.exports = View.extend({
     },
     render: function() {
         this.renderWithTemplate(this);
+        this.el.id = this.model.talkId;
 
         if (this.model.starred) {
             dom.addClass(this.el, 'starred');
