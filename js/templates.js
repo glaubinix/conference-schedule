@@ -33,14 +33,9 @@
         return '<li class="schedule-tab"><a role="entry"></a></li>';
     };
 
-    // schedule/slot.jade compiled template
-    templatizer["schedule"]["slot"] = function tmpl_schedule_slot() {
-        return '<h2 role="time"></h2><div role="talks"></div>';
-    };
-
     // schedule/talk.jade compiled template
     templatizer["schedule"]["talk"] = function tmpl_schedule_talk() {
-        return '<div class="talk"><h3 class="talk-headline"><span role="speaker"></span><span> - </span><span role="topic"></span></h3><div>Location: <span role="location"></span></div><div class="hidden description"><span role="description"></span><div><span class="star-button">star</span></div></div></div>';
+        return '<div role="id"><h2 role="time"></h2><div class="talk"><h3 class="talk-headline"><span role="speaker"></span><span> - </span><span role="topic"></span></h3><div>Location: <span role="location"></span></div><div class="hidden description"><span role="description"></span><div><span class="star-button">star</span></div></div></div></div>';
     };
 
     return templatizer;

@@ -10,5 +10,17 @@ module.exports = AmpersandState.extend({
         day: ['string'],
         starred: ['boolean']
     },
+    derived: {
+        datetime: {
+            fn: function() {
+                return this.time.start + ' - ' + this.time.end;
+            }
+        },
+        talkId: {
+            fn: function() {
+                return 'talk-' + this.id;
+            }
+        }
+    },
     extraProperties: 'allow'
 });

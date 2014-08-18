@@ -5,10 +5,16 @@ var dom = require('ampersand-dom');
 module.exports = View.extend({
     template: templates.schedule.talk,
     bindings: {
+        'model.talkId': {
+            type: 'attribute',
+            name: 'id',
+            role: 'id'
+        },
         'model.topic': '[role=topic]',
         'model.location': '[role=location]',
         'model.speaker': '[role=speaker]',
-        'model.description': '[role=description]'
+        'model.description': '[role=description]',
+        'model.datetime': '[role=time]'
     },
     events: {
         'click .star-button': 'toggleStar',
