@@ -23,7 +23,6 @@ module.exports = View.extend({
 
             self.collection.each(function(entry) {
                 element = document.getElementById(entry.talkId);
-                console.log(element)
                 if (element) {
                     element = element.getElementsByTagName('h2')[0];
                     if (entry.time.start === lastDateTime.start && entry.time.end === lastDateTime.end) {
