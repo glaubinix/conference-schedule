@@ -20,7 +20,7 @@
 
     // head.jade compiled template
     templatizer["head"] = function tmpl_head() {
-        return '<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/><meta name="apple-mobile-web-app-capable" content="yes"/><link rel="stylesheet" href="css/normalize.css"/><link rel="stylesheet" href="css/main.css"/>';
+        return '<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/><meta name="apple-mobile-web-app-capable" content="yes"/>';
     };
 
     // pages/schedule.jade compiled template

@@ -43,33 +43,6 @@ h1 {
 	width: 25%;
 }
 
-#schedule-tabs li.refresh-tab {
-	background-color: #444;
-	width: 10%;
-	overflow: hidden;
-	height: 20px;
-}
-
-.refresh-tab .refresh-icon {
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	background: transparent url(/images/refresh-white.png) center center no-repeat;
-}
-
-#schedule-tabs li.refresh-tab.refreshing .refresh-icon {
-	-webkit-animation: rotate 1s linear 0s infinite normal;
-}
-
-@-webkit-keyframes rotate {
-	from {
-		-webkit-transform: rotate(0deg);
-	}
-	to {
-		-webkit-transform: rotate(360deg);
-	}
-}
-
 h2 {
 	margin: 0;
 	background-color: #444;
