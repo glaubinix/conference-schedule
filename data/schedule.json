@@ -11,32 +11,31 @@
 					"topic": "Entrance, registration, warm up",
 					"location": "Main Hall",
 					"description": "blaaaaaahhhh"
-				},
-				{
-					"speaker": "Norman",
-					"topic": "Redis introduction",
-					"location": "Room H1"
 				}
 			]
 		},
 		{
 			"time": {
-				"start": "10.30",
-				"end": "12.00"
+				"start": "10:30",
+				"end": "12:00"
 			},
 			"talks": [
-				{
-					"speaker": "Orga Team",
-					"topic": "Entrance, registration, warm up",
-					"location": "Main Hall",
-					"description": "blaaaaaahhhh"
-				}
+                {
+                    "speaker": "Norman",
+                    "topic": "Redis introduction",
+                    "location": "Room H1"
+                },
+                {
+                    "speaker": "Mr Awesome",
+                    "topic": "Stop being awesome",
+                    "location": "Room H2"
+                }
 			]
 		},
 		{
 			"time": {
-				"start": "12.00",
-				"end": "13.00"
+				"start": "12:00",
+				"end": "13:00"
 			},
 			"talks": [
 				{
@@ -125,8 +124,8 @@
 		},
 		{
 			"time": {
-				"start": "12.30",
-				"end": "14.00"
+				"start": "12:30",
+				"end": "14:00"
 			},
 			"talks": [
 				{
@@ -139,8 +138,8 @@
 		},
 		{
 			"time": {
-				"start": "14.00",
-				"end": "16.00"
+				"start": "14:00",
+				"end": "16:00"
 			},
 			"talks": [
 				{
