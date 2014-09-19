@@ -15,7 +15,7 @@ h3 {
 	color: #669;
 }
 
-#schedule-tabs > li.active-tab {
+#schedule-tabs > li > a.active-tab {
 	background-color: #99c;
 }
 

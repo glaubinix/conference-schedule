@@ -2,7 +2,7 @@ h1 {
 	background-color: #080;
 }
 
-#schedule-tabs > li.active-tab {
+#schedule-tabs > li > a.active-tab {
 	background-color: #080;
 }
 

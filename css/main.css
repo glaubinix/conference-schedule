@@ -15,52 +15,32 @@ h1 {
 #schedule-tabs > li {
 	text-align: center;
 	display: inline-block;
-	padding: 10px 0;
-	color: #666;
 }
 
-#schedule-tabs > li.active-tab {
+#schedule-tabs > li > a {
+    display:block;
+    height:100%;
+    width:100%;
+    text-decoration: none;
+    color: #666;
+    padding: 10px 0;
+}
+
+#schedule-tabs > li > a.active-tab {
 	background-color: #ff69b4;
 	color: #fff;
 }
 
 #schedule-tabs.tabs-2 > li {
-	width: 45%;
+	width: 50%;
 }
 
 #schedule-tabs.tabs-3 > li {
-	width: 30%;
+	width: 33%;
 }
 
 #schedule-tabs.tabs-4 > li {
-	width: 22.5%;
-}
-
-#schedule-tabs li.refresh-tab {
-	background-color: #444;
-	width: 10%;
-	overflow: hidden;
-	height: 20px;
-}
-
-.refresh-tab .refresh-icon {
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	background: transparent url(/images/refresh-white.png) center center no-repeat;
-}
-
-#schedule-tabs li.refresh-tab.refreshing .refresh-icon {
-	-webkit-animation: rotate 1s linear 0s infinite normal;
-}
-
-@-webkit-keyframes rotate {
-	from {
-		-webkit-transform: rotate(0deg);
-	}
-	to {
-		-webkit-transform: rotate(360deg);
-	}
+	width: 25%;
 }
 
 h2 {
@@ -85,7 +65,7 @@ h3 {
 	display: none;
 }
 
-.talk {
+.talk > div{
 	padding: 3px 10px;
 }
 
@@ -114,4 +94,37 @@ h3 {
 
 .talk.starred .star-button {
     background-color: #ff69b4;
+}
+
+a.settings-trigger {
+    z-index: 10;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background: #444;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+div#settings {
+    display: block;
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-color: #444;
+    color: #fff;
+}
+
+div#settings h2 {
+    padding-top: 20px;
+    padding-left: 20px;
+    color: #fff;
+}
+
+div#settings h3 {
+    padding-top: 20px;
+    padding-left: 20px;
+    color: #fff;
 }

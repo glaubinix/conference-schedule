@@ -1,5 +1,5 @@
 {
-	"conference": "ACME Conference Schedule 2013",
+	"name": "ACME Conference Schedule 2013",
 	"theme": "hot-pink",
 	"schedule_loader": {
 		"type": "json",
@@ -10,5 +10,9 @@
 		"refresh",
 		"star",
 		"local-storage"
-	]
+	],
+    "tabs": [
+        "day",
+        "location"
+    ]
 }
