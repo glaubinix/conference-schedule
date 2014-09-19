@@ -15,7 +15,7 @@
 
     // body.jade compiled template
     templatizer["body"] = function tmpl_body() {
-        return '<body><a href="/settings" class="settings-trigger"></a><h1 role="name"></h1><main role="page-container"></main></body>';
+        return '<body><h1 role="name"></h1><main role="page-container"></main></body>';
     };
 
     // head.jade compiled template
