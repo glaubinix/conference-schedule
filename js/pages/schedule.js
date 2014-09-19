@@ -9,6 +9,7 @@ module.exports = View.extend({
     initialize: function () {
         var self = this;
         this.model.menuEntries.once('all', function () {
+            dom.html(self.getByRole('menu-entries'), '');
             self.renderCollection(self.model.menuEntries, MenuEntry, self.getByRole('menu-entries'));
             dom.addClass(self.getByRole('menu-entries'), 'tabs-' + self.model.menuEntries.length);
             dom.addClass(self.get('#menu-' + self.model.selector + '-' + self.model.selectionValue), 'active-tab');
